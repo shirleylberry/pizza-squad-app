@@ -1,1 +1,10 @@
-<h1>Events</h1>
+<h1>Upcoming Events</h1>
+
+<ul>
+  <% @events.each do |event| %>
+  <h3>  <%= link_to event.title, event_path(event) %></h3>
+    <li><%= event.description %></li>
+
+    <li><%= event.time_left %></li>
+  <%end%>
+</ul>

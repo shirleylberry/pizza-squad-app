@@ -1,0 +1,25 @@
+
+<ul>
+  <h1><%= @event.title %></h1>
+  <li>Description: <%= @event.description %></li>
+  <li>Time of Event: <%= @event.date.strftime("%A, %B %e, %Y at %l:%M %P") %></li>
+  <li>Deadline: <%= @event.deadline.strftime("%A, %B %e, %Y at %l:%M %P") %></li>
+  <li>Time Until Deadline: <%= @event.time_left %></li>
+</ul>
+
+<h3>Total Pizzas:</h3>
+  <p>
+    <%= @event.slices.count %> Slices, approximately
+    <%= @event.slices.count/8 %> Zas
+  </p>
+
+<h3>Participants</h3>
+<ul>
+
+ <% @orders.each do |order| %>
+ <li>  <%= link_to order.user.name, user_path(order.user) %>, <%=order.slices.count %></li>
+  <%end%>
+</ul>
+
+
+<%= link_to "Add Order", new_event_order_path(@event)%>

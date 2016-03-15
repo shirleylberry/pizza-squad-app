@@ -8,9 +8,9 @@ class Event < ActiveRecord::Base
   validates :title, presence: true
   validates :date, presence: true
   validates :deadline, presence: true
-  validate :deadline_before_date 
+  validate :deadline_before_date
 
-  # VALIDATIONS 
+  # VALIDATIONS
 
   def deadline_before_date
     if deadline > (date - 1.hours).to_datetime
@@ -25,7 +25,7 @@ class Event < ActiveRecord::Base
     mm, ss = t.divmod(60)            #=> [4515, 21]
     hh, mm = mm.divmod(60)           #=> [75, 15]
     dd, hh = hh.divmod(24)           #=> [3, 3]
-    puts "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
+    "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
   end
 
 end
