@@ -1,0 +1,2 @@
+class SlicesController < ApplicationController
+end
