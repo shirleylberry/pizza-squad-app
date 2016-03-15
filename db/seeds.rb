@@ -28,13 +28,13 @@ pizza = Pizza.create(topping: "cheese", price: 17.0)
 # create two events
 e1 = Event.new(title: Faker::Book.title, description: Faker::Hipster.sentence)
 e1.date =  Faker::Time.forward(2, :evening)
-e1.deadline = Faker::Time.forward(2, :afternoon)
+e1.deadline = (e1.date - 3.hours).to_datetime
 e1.president = President.first
 e1.save
 
 e2 = Event.new(title: Faker::Book.title, description: Faker::Hipster.sentence)
 e2.date =  Faker::Time.forward(7, :evening)
-e2.deadline = Faker::Time.forward(7, :afternoon)
+e2.deadline = (e2.date - 2.hours).to_datetime
 e2.president = President.last
 e2.save
 
