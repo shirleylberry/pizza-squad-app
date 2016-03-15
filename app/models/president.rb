@@ -1,4 +1,4 @@
-class President < User
+class President < ActiveRecord::Base
   belongs_to :user
   has_many :events
 end
