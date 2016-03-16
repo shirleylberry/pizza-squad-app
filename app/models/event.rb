@@ -20,6 +20,14 @@ class Event < ActiveRecord::Base
 
   ####################
 
+  def date=(date)
+    write_attribute(:date, Chronic::parse(date))
+  end
+
+  def deadline=(deadline)
+    write_attribute(:deadline, Chronic::parse(deadline))
+  end
+
   def time_left
     t = deadline - DateTime.now
     mm, ss = t.divmod(60)            #=> [4515, 21]
