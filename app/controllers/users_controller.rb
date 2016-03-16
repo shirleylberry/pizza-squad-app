@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
 
   def show
-
+    # @orders = @user.orders
+    @active_orders = @user.orders.select{|order| order.event.active}
+    @inactive_orders = @user.orders.select{|order| !order.event.active}
   end
 
 

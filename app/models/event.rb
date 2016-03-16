@@ -50,4 +50,8 @@ class Event < ActiveRecord::Base
     "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
   end
 
+  def active
+    Time.now > self.date ? false : true
+  end
+
 end
