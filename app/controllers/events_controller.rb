@@ -15,13 +15,27 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.president = President.new(user: current_user)
+    @event.president = President.create(user: current_user)
 
     if @event.save
       redirect_to event_path @event
     else
       render :new
     end
+  end
+
+  def edit
+
+    redirect_to @event if @event.president.user != current_user
+  end
+
+  def update
+    if @event.update(event_params)
+      redirect_to @event
+    else
+      render :edit
+    end
+
   end
 
 

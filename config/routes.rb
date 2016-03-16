@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   # resources :slices
   resources :users
   resources :events do
-    resources :orders
+    resources :orders, except: [:index]
   end
+  resources :orders, only: [:index]
 
   root to: 'pages#home'
 

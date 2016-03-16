@@ -1,5 +1,15 @@
+<% if event.errors.any? %>
+  <ul>
+    <% event.errors.full_messages.each do |msg| %>
+      <h3>Errors: </h3>
+      <li><%= msg %></li>
+    <%end%>
+  </ul>
+<%end%>
+
+
 <%= form_for event do |f| %>
-  <%= f.label :title %> 
+  <%= f.label :title %>
   <%= f.text_field :title %> <br>
   <%= f.label :description %>
   <%= f.text_area :description %> <br>

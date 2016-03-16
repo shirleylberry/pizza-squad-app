@@ -1,0 +1,11 @@
+<h1>Order for <%= @order.event.title %></h1>
+<h4><em><%= @order.event.time_left %> until orders close</em></h4>
+
+
+This user ordered:
+
+<ol>
+  <% @order.slices.each do |slice| %>
+    <li><%= slice.pizza.topping %></li>
+  <% end %>
+</ol>
