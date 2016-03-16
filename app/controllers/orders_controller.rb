@@ -10,6 +10,8 @@ class OrdersController < ApplicationController
     end
 
     def new
+
+
       @order = Order.new
       @event = Event.find(params[:event_id])
       @pizzas = Pizza.all

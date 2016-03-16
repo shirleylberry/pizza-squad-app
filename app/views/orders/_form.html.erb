@@ -1,0 +1,17 @@
+<h1>Pizza Order</h1>
+
+<% if order.errors.any? %>
+  <ul>
+    <% order.errors.full_messages.each do |msg| %>
+      <h3>Errors: </h3>
+      <li><%= msg %></li>
+    <%end%>
+  </ul>
+<%end%>
+
+<%=form_for([event, order]) do |f| %>
+    <%= f.fields_for :slices do |slice_form|%>
+    Slice <%= slice_form.collection_select(:pizza_id, Pizza.all, :id, :topping) %><br><br>
+    <%end%>
+<%= f.submit%>
+<%end%>
