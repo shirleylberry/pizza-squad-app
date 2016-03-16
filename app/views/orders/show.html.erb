@@ -11,5 +11,5 @@ This user ordered:
 </ol>
 
 <% if @order.user == current_user %>
-  <p><%= link_to "Delete Order", event_order_path(@order.event, @order), :method => :delete, :data => {:confirm => "No 'za bro?"}%></p>
+  <p><%= link_to "Edit Order", edit_event_order_path(@order.event, @order) %></p>
 <% end %>
