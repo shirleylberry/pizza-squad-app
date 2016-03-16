@@ -14,7 +14,6 @@ class OrdersController < ApplicationController
     end
 
     def new
-      # byebug
       @order = Order.new
       @event = Event.find(params[:event_id])
       @pizzas = Pizza.all
