@@ -24,6 +24,6 @@
 </ul>
 
 
-<%= link_to "Add Order", new_event_order_path(@event)%><br>
+<%= link_to "Add Order", input_num_slices_path(@event)%><br>
 
 <%= link_to "Edit Event", edit_event_path(@event) if @event.president.user == current_user%>

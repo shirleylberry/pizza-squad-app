@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # resources :pizzas
   # resources :slices
   resources :users
+  
+  get '/events/:event_id/orders/enter_slices' => 'orders#input_num_slices', as: 'input_num_slices'
+
   resources :events do
     resources :orders, except: [:index]
   end
@@ -13,6 +16,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new', as: 'login'
   post '/sessions' => 'sessions#create'
   delete '/sessions' => 'sessions#destroy', as: 'logout'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

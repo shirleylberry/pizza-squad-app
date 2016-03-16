@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:new, :input_num_slices]
 
     def index
 
@@ -9,12 +10,17 @@ class OrdersController < ApplicationController
 
     end
 
+    def input_num_slices
+    end
+
     def new
+      # byebug
       @order = Order.new
       @event = Event.find(params[:event_id])
       @pizzas = Pizza.all
-
-      5.times {@order.slices.build}
+      # byebug
+      num_slices = params[:num_slices].to_i
+      num_slices.times {@order.slices.build}
     end
 
     def create
@@ -33,6 +39,10 @@ private
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def set_event
+    @event = Event.find(params[:event_id])
   end
 
   def order_params
