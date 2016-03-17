@@ -54,4 +54,17 @@ class Event < ActiveRecord::Base
     Time.now > self.date ? false : true
   end
 
+  def get_total_slices
+    # reference the method of the same name on orders
+    total_slices = self.orders.sum(:slices)
+  end
+
+  def total_pies
+    # pie_types = {"cheese": 10, "mushroom": 4, "pepperoni": 3}
+    pie_types = Event.joins(orders: :slices).where('orders.event_id = ?', self.id)
+    byebug
+    self.slices.count / 8
+  end
+
+
 end

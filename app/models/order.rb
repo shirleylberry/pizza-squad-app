@@ -17,4 +17,8 @@ class Order < ActiveRecord::Base
   validates :user_id, presence: true
   validates :event_id, presence: true
   accepts_nested_attributes_for :slices
+
+  def total_slices
+    self.slices.count
+  end
 end
