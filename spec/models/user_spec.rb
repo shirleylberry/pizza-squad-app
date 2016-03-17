@@ -11,7 +11,6 @@
 #
 
 require_relative "../spec_helper.rb"
-# require_relative "../lib/pizzasquad"
 
 RSpec.describe User, type: :model do
   let!(:user1) { User.create(name: "Nikola Tesla", email: "ntesla@teslacars.com", password: "ImmaBoss") }
@@ -19,7 +18,7 @@ RSpec.describe User, type: :model do
   let(:no_email_attributes) { {name: "Thomas Edison", password: "itselectric"} }
   let(:no_password_attributes) { {name: "Thomas Edison", email: "thomas@edison.com"} }
 
-  describe 'associations' do
+  describe 'attributes' do
     it 'has a name' do
       expect(user1.name).to eq("Nikola Tesla")
     end
