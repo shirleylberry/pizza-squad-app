@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for placing an order, <%= @user.name %></h1>
+    <p>
+      You have successfully reserved <%=@order.slices.count%> slices for the <%=@order.event.title%>.
+    </p>
+    <p>You can edit your order using the link below.
+
+      <p><%= link_to "Edit Order", edit_event_order_path(@order.event, @order) %></p>
+    </p>
+    <p>You have <%= @order.event.time_left%> to edit or cancel your order. Thanks for placing an order and have a great day!</p>
+  </body>
+</html>
