@@ -63,7 +63,7 @@ e3.president = pres2
 e3.save
 
 # create ten orders
-10.times{Order.create(user: User.all.sample, event: Event.all.sample)}
+30.times{Order.create(user: User.all.sample, event: Event.all.sample)}
 
 # create thirty slices
-30.times{Slice.create(order:Order.all.sample, pizza: pizzas.sample)}
+150.times{Slice.create(order:Order.all.sample, pizza: pizzas.sample)}

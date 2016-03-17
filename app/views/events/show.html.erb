@@ -13,6 +13,13 @@
   <p>
     <%= @event.slices.count %> Slices, approximately
     <%= @event.slices.count/8 %> Zas
+    <p>
+    <ul>
+    <% @event.get_pie_types_counts_hash.each do |topping, count| %>
+      <li><%= "#{count} #{topping} slices" %></li>
+    <% end %>
+    </ul>
+    </p>
   </p>
 
 <h3>Participants</h3>

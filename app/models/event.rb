@@ -54,14 +54,9 @@ class Event < ActiveRecord::Base
     Time.now > self.date ? false : true
   end
 
-  # def get_total_slices
-  #   # reference the method of the same name on orders
-  #   Order.all.select{|order| order.event_id = self.id}
-  #   total_slices = Event.sum(:orders) #.where('orders.event_id = ?', self.id)
-  # end
-
+  # pizza logic
   def get_pie_types_counts_hash
-    # pie_types = {"cheese": 10, "mushroom": 4, "pepperoni": 3}
+    # pie_types = {"cheese": 10, "mushroom": 4, "pepperoni": 15}
     pie_types_hash = self.orders.each_with_object({}) do |order, orders_hash|
       orders_hash[order.id] = Slice.get_num_slices_per_order(order)
     end
@@ -70,11 +65,21 @@ class Event < ActiveRecord::Base
         old_val + new_val
       end
     end
-    byebug
   end
 
-  # def total_pies
-  # end
+  def convert_slice_to_cheese
+    slice.pizza = Pizza.find_by(topping: "cheese")
+    slice.save
+  end
+
+  def total_pies
+    # if it's more than four slices of a topping, we order that pie.
+    # if it's four or fewer slices, we switch them over to cheese.
+    counts_hash = self.get_pie_types_counts_hash
+    counts_hash.each do |topping, slice_count|
+      
+    end
+  end
 
 
 end
