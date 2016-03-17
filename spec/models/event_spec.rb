@@ -12,55 +12,73 @@
 #  updated_at   :datetime         not null
 #
 
-require "rspec"
-require_relative "../lib/pizzasquad"
+require_relative "../spec_helper.rb"
 
 RSpec.describe Event, type: :model do
-  # let(:event) {Event.new}
-  # let(:user) {User.create(name: "Shirley", email: "shirley@gmail.com")}
-  # let(:president) {President.new}
-  describe 'belongs_to associations' do
-      it 'belongs to a president' do
-        Event.president = president
-        expect(event.president).to eq(president)
-      end
+  let(:user) {User.create(name: "Jeff Winger", email: "jeff@coollawyer.com", password: "pierceisweird")}
+  let(:pres_user) {User.create(name: "Britta Perry", email: "britta@activis,m.com", password: "savethewhales")}
+  let(:president) {President.create(user: pres_user)}
+  let!(:event) {Event.create(date: "2016-09-19 07:03:30 -0700", deadline: "2016-09-19 05:03:30 -0700", title: "FSP Pizza Party", description: "yum pizza yum", president: president)}
+
+  let(:invalid_date_params) {{date: "2016-09-19 07:03:30 -0700", deadline: "2016-09-10 05:03:30 -0700", title: "FSP Pizza Party", description: "yum pizza yum", president: president}}
+  let(:no_title_params) {{date: "2014-09-19 07:03:30 -0700", deadline: "2014-09-19 05:03:30 -0700", description: "yum pizza yum", president: president}}
+  let(:no_date_params) {{deadline: "2014-09-19 05:03:30 -0700", title: "FSP Pizza Party", description: "yum pizza yum", president: president}}
+  let(:no_deadline_params) {{date: "2014-09-19 07:03:30 -0700", title: "FSP Pizza Party", description: "yum pizza yum", president: president}}
+  let(:no_president_params) {{date: "2014-09-19 07:03:30 -0700", deadline: "2014-09-19 05:03:30 -0700", title: "FSP Pizza Party", description: "yum pizza yum"}}
+
+
+  describe 'attributes' do
+    it 'has a president' do
+      expect(event.president).to eq(president) # unsure of date format
     end
-    e1 = Event.create(title: "FSP Pizza Party", description: "yum pizza yum")
 
-    describe 'attributes' do
-      it 'has a title' do
-        expect(e1.title).to eq("FSP Pizza Party")
-      end
+    it 'has a title' do
+      expect(event.title).to eq("FSP Pizza Party")
+    end
 
-      it 'has a date' do
-        e1.date = 
-        expect(e1.date).to eq("") # unsure of date format
-      end
+    it 'has a date' do
+      expect(event.date).to eq("2016-09-19 14:03:30.000000000 +0000") # unsure of date format
+    end
 
-      it 'has a description' do
-        e1.description = "yum pizza yum"
-        expect(e1.description).to eq("yum pizza yum") 
-      end
+    it 'has a description' do
+      expect(event.description).to eq("yum pizza yum") 
+    end
 
-      it 'has a deadline' do
-        e1.deadline = 
-        expect(Event.first.name).to eq("") # same as above - unsure of date format
-      end
+    it 'has a deadline' do
+      expect(event.deadline).to eq("2016-09-19 05:03:30 -0700") # same as above - unsure of date format
+    end
+  end
 
-      it 'has a president' do
-        e1.pres_id = "1"
-        expect(Event.first.pres_id).to eq('1')
-      end
+  describe 'validations' do
+    # it 'is invalid if the deadline is after the date' do
+    #   invalid_event = Event.new(invalid_date_params)
+    #   expect(invalid_event.save).to eq(false)
+    # end 
 
-  # describe 'instance methods' do
-      it 'makes sure the deadline comes before than the date' do
-        e1.deadline_before_date
-        expect("")
-      end 
+    it 'is invalid without a title' do
+      invalid_event = Event.new(no_title_params)
+      expect(invalid_event.save).to eq(false)
+    end 
 
-    describe 'time_left'
-      it 'calculates amount of time left before the deadline' do
-        expect(t).to eq(deadline - DateTime.now)
-      end 
+    it 'is invalid without a date' do
+      invalid_event = Event.new(no_date_params)
+      expect(invalid_event.save).to eq(false)
+    end 
+
+    it 'is invalid without a deadline' do
+      invalid_event = Event.new(no_deadline_params)
+      expect(invalid_event.save).to eq(false)
+    end 
+
+    it 'is invalid without a president' do
+      invalid_event = Event.new(no_president_params)
+      expect(invalid_event.save).to eq(false)
+    end 
+  end
+  # describe '#time_left'
+  #   it 'calculates amount of time left before the deadline' do
+  #     expect(t).to eq(deadline - DateTime.now)
+  #   end 
+  # end
 end
 

@@ -42,7 +42,7 @@ RSpec.describe User, type: :model do
       expect(no_email_user.save).to be(false)
     end
 
-    it 'is invalid without apassword' do
+    it 'is invalid without a password' do
       no_password_user = User.new(no_password_attributes)
       expect(no_password_user.save).to be(false)
     end
