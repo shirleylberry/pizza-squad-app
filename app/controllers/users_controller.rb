@@ -6,7 +6,6 @@ class UsersController < ApplicationController
     #   render file: "app/views/users/registrations/new.html.erb"
     # end
 
-
   def show
     @active_orders = @user.orders.select{|order| order.event.active}
     @inactive_orders = @user.orders.select{|order| !order.event.active}

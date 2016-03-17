@@ -1,19 +1,15 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root to: 'pages#home'
+  get '/events/:event_id/orders/enter_slices' => 'orders#input_num_slices', as: 'input_num_slices'
 
   resources :events do
     resources :orders, except: [:index]
   end
   resources :orders, only: [:index]
-  resources :slices, only: [:delete]
-  devise_for :users
+  resources :slices, only: [:destroy]
   resources :users
-  # resources :presidents
-  # resources :pizzas
-  # resources :slices
-
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

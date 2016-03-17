@@ -29,6 +29,10 @@ class OrdersController < ApplicationController
       @order.user = current_user
       @order.event = Event.find(params[:event_id])
       if @order.save
+
+        UserMailer.welcome_email(current_user).deliver_now
+
+
         redirect_to event_order_path(@order.event, @order)
       else
         render :new
