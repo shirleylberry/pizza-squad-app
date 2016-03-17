@@ -16,4 +16,6 @@ class User < ActiveRecord::Base
   has_many :slices, through: :orders
 
   validates :email, uniqueness: true
+  validates :email, presence: true
+  validates :password, presence: true
 end

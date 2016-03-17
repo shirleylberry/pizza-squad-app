@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
   validates :title, presence: true
   validates :date, presence: true
   validates :deadline, presence: true
-  validate :deadline_before_date
+  validate :deadline_before_date, unless: Proc.new {|e| e.date.nil? || e.deadline.nil?}
 
   # VALIDATIONS
 
