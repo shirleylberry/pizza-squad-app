@@ -1,0 +1,12 @@
+Thanks for placing an order, <%= @user.name %>
+
+===============================================
+
+Thanks for placing an order, <%= @user.name %>
+You have successfully reserved <%=@order.slices.count%> slices for the <%=@order.event.title%>.
+
+You can edit your order using the link below.
+
+<%= link_to "Edit Order", edit_event_order_path(@order.event, @order) %>
+
+You have <%= @order.event.time_left%> to edit or cancel your order. Thanks for placing an order and have a great day!
