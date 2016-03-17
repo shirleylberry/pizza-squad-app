@@ -29,4 +29,5 @@ class User < ActiveRecord::Base
   has_many :slices, through: :orders
 
   # validates :email, uniqueness: true
+
 end
