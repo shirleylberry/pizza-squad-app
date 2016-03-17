@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   root to: 'pages#home'
   get '/events/:event_id/orders/enter_slices' => 'orders#input_num_slices', as: 'input_num_slices'
 

@@ -23,26 +23,18 @@
       <a class="navbar-brand" <%= link_to "Home", root_path %></a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><%= link_to "Upcoming Events", events_path %></li>
-        <li><a href="#about">My Orders</a></li>
-
-        <li>
-
-          <% if user_signed_in? %>
-            <!-- Hello, <%= current_user.email %> -->
-            <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
-            <!-- <a <%= form_tag(destroy_user_session_path, method: "DELETE") do %></a> -->
-              <!-- <%= submit_tag "Log Out" %> -->
-            <% end %>
-          <% else %>
-            <a <%= link_to "Log In", new_user_session_path %></a>
-          <% end %>
-
-
-        </li>
-      </ul>
-    </div><!--/.nav-collapse -->
+     <ul class="nav navbar-nav">
+       <li><%= link_to "Upcoming Events", events_path %></li>
+       <li><a href="#about">My Orders</a></li>
+     </ul>
+     <ul class="nav navbar-nav navbar-right">
+         <% if user_signed_in? %>
+           <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+         <% else %>
+           <li><a <%= link_to "Log In", new_user_session_path %></a></li>
+         <% end %>
+     </ul>
+   </div><!--/.nav-collapse -->
   </div>
 </nav>
 
