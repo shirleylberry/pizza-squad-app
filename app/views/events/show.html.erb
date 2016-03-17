@@ -16,14 +16,14 @@
   </p>
 
 <h3>Participants</h3>
-<ul>
+  <ul class="list-group-item">
 
  <% @orders.each do |order| %>
- <li>  <%= link_to order.user.name, user_path(order.user) %>, <%=order.slices.count %></li>
+ <li class="list-group-item">  <%= link_to order.user.name, user_path(order.user) %>, <%=order.slices.count %></li>
   <%end%>
 </ul>
 
 
-<%= link_to "Add Order", input_num_slices_path(@event)%><br>
+<%= link_to "Add Order", input_num_slices_path(@event), {class:"btn btn-xs btn-primary"}%>
 
-<%= link_to "Edit Event", edit_event_path(@event) if @event.president.user == current_user%>
+<%= link_to "Edit Event", edit_event_path(@event),{class:"btn btn-xs btn-primary"} if @event.president.user == current_user%>
