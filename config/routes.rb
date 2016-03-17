@@ -1,23 +1,19 @@
 Rails.application.routes.draw do
-  # resources :presidents
-  # resources :pizzas
-  # resources :slices
-  resources :users
 
-  get '/events/:event_id/orders/enter_slices' => 'orders#input_num_slices', as: 'input_num_slices'
+  root to: 'pages#home'
 
   resources :events do
     resources :orders, except: [:index]
   end
   resources :orders, only: [:index]
   resources :slices, only: [:delete]
+  devise_for :users
+  resources :users
+  # resources :presidents
+  # resources :pizzas
+  # resources :slices
 
-  root to: 'pages#home'
 
-  get '/login' => 'sessions#new', as: 'login'
-  post '/sessions' => 'sessions#create'
-  delete '/sessions' => 'sessions#destroy', as: 'logout'
-  delete '/slices/:id' => "slices#destroy", as: "delete_slice"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
