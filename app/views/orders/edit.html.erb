@@ -1,3 +1,6 @@
 <%= render partial: "form", locals: {order: @order, event: @event, pizza: @pizza} %>
 
-<p><%= link_to "Delete Order", event_order_path(@order.event, @order), :method => :delete, :data => {:confirm => "No 'za bro?"}%></p>
+<p>
+  <%= link_to "Add a Slice", add_slice_path(@event, @order) %> | 
+  <%= link_to "Delete Order", event_order_path(@event, @order), :method => :delete, :data => {:confirm => "No 'za bro?"}%>
+</p>

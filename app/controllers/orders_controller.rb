@@ -10,8 +10,8 @@
 #
 
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :set_event, only: [:new, :edit, :input_num_slices, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :add_slice]
+  before_action :set_event, only: [:new, :edit, :destroy, :input_num_slices, :add_slice]
 
     def index
 
@@ -22,6 +22,12 @@ class OrdersController < ApplicationController
     end
 
     def input_num_slices
+    end
+
+    def add_slice
+      @pizzas = Pizza.all
+      @order.slices.build
+      render :edit
     end
 
     def new
@@ -40,10 +46,7 @@ class OrdersController < ApplicationController
       @order.user = current_user
       @order.event = Event.find(params[:event_id])
       if @order.save
-
         UserMailer.welcome_email(current_user).deliver_now
-
-
         redirect_to event_order_path(@order.event, @order)
       else
         render :new
@@ -51,7 +54,6 @@ class OrdersController < ApplicationController
     end
 
     def update
-      byebug
       if @order.update(order_params)
         redirect_to event_order_path(@order.event, @order)
       else
