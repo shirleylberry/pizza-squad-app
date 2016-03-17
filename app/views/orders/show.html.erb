@@ -9,3 +9,7 @@ This user ordered:
     <li><%= slice.pizza.topping %></li>
   <% end %>
 </ol>
+
+<% if @order.user == current_user %>
+  <p><%= link_to "Edit Order", edit_event_order_path(@order.event, @order) %></p>
+<% end %>

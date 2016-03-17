@@ -11,7 +11,7 @@
 
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :set_event, only: [:new, :input_num_slices]
+  before_action :set_event, only: [:new, :edit, :input_num_slices, :destroy]
 
     def index
 
@@ -26,11 +26,13 @@ class OrdersController < ApplicationController
 
     def new
       @order = Order.new
-      @event = Event.find(params[:event_id])
       @pizzas = Pizza.all
-      # byebug
       num_slices = params[:num_slices].to_i
       num_slices.times {@order.slices.build}
+    end
+
+    def edit
+      @pizzas = Pizza.all
     end
 
     def create
@@ -42,7 +44,20 @@ class OrdersController < ApplicationController
       else
         render :new
       end
+    end
 
+    def update
+      byebug
+      if @order.update(order_params)
+        redirect_to event_order_path(@order.event, @order)
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @order.destroy
+      redirect_to @event
     end
 
 private
@@ -56,7 +71,7 @@ private
   end
 
   def order_params
-    params.require(:order).permit(:slices_attributes => [:pizza_id])
+    params.require(:order).permit(:slices_attributes => [:pizza_id, :id])
   end
 
 end

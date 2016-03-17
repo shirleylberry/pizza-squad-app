@@ -11,7 +11,9 @@
 
 <%=form_for([event, order]) do |f| %>
     <%= f.fields_for :slices do |slice_form|%>
-    Slice <%= slice_form.collection_select(:pizza_id, Pizza.all, :id, :topping) %><br><br>
+    Slice <%= slice_form.collection_select(:pizza_id, Pizza.all, :id, :topping) %>
+    <%= link_to "Remove Slice", delete_slice_path(slice_form.object), :method => :delete, :data => {:confirm => "No 'za bro?"} if order.id %>
+    <br><br>
     <%end%>
 <%= f.submit%>
 <%end%>
