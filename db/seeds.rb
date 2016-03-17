@@ -36,8 +36,9 @@ pres3.save
 # create one pizza
 pizza = Pizza.create(topping: "cheese", price: 17.0)
 pizza2 = Pizza.create(topping: "Mushroom", price: 22.0)
+pizza3 = Pizza.create(topping: "pepperoni", price: 30.0)
 
-
+pizzas = [pizza, pizza2, pizza3]
 # create two events
 e1 = Event.new(title: Faker::Book.title, description: Faker::Hipster.sentence)
 date =  Faker::Time.forward(2, :evening)
@@ -65,4 +66,4 @@ e3.save
 10.times{Order.create(user: User.all.sample, event: Event.all.sample)}
 
 # create thirty slices
-30.times{Slice.create(order:Order.all.sample, pizza: pizza)}
+30.times{Slice.create(order:Order.all.sample, pizza: pizzas.sample)}
