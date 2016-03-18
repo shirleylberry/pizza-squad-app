@@ -71,7 +71,6 @@ class Event < ActiveRecord::Base
     end
   end
 
-<<<<<<< HEAD
   # pizza logic
   def determine_remainder(number)
     if number%8 != 0 && number%8 < 4
@@ -79,6 +78,8 @@ class Event < ActiveRecord::Base
     elsif number%8 != 0 && number%8 >= 4
       remainder = 0
       number += number % 8
+    else
+      remainder = 0
     end
     num_slices = remainder
     num_pies = number / 8
@@ -91,9 +92,11 @@ class Event < ActiveRecord::Base
     pies_slices_hash = {pies: {}, slices: {}}
     order_hash = pie_types_hash.each_with_object(pies_slices_hash) do |(topping, number), pies_slices_hash|
       num_slices, num_pies = determine_remainder(number)
+      # byebug
       pies_slices_hash[:slices][topping] = num_slices unless num_slices == 0
       pies_slices_hash[:pies][topping] = num_pies
     end
+    order_hash
   end
 
   def get_pie_types_counts_hash
@@ -107,6 +110,42 @@ class Event < ActiveRecord::Base
         old_val + new_val
       end
     end
+  end
+
+  def total_slices_price(slices_hash)
+    slices_total = 0
+    slices_hash.each do |topping, number|
+      pizza = Pizza.find_by_topping(topping)
+      slices_total += pizza.indiv_piece_price * number
+    end
+    slices_total
     # byebug
+  end
+
+  def total_pies_price(pies_hash)
+    pies_total = 0
+    pies_hash.each do |topping, number|
+      pizza = Pizza.find_by_topping(topping)
+      pies_total += pizza.price * number
+    end
+    pies_total
+  end
+
+  def total_price
+    slices_pies = self.determine_slices_pies
+    total = 0
+    slices_pies.each do |item_type, item_hash|
+      # iterate over all of them, find the pizza with that topping
+      # add either the pie price or the indiv_piece_price to the total
+      # byebug
+      if item_type == :pies
+        total += total_pies_price(item_hash)
+      elsif item_type == :slices
+        total += total_slices_price(item_hash)
+      end
+    end
+    # byebug
+    total
+  end
 
 end
