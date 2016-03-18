@@ -15,6 +15,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @events = Event.all
   end
@@ -48,6 +49,12 @@ class EventsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def user_order_email
+    @event = Event.find(params[:event_id])
+    @event.order_information_user
+    redirect_to event_path @event
   end
 
 

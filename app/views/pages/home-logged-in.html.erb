@@ -2,9 +2,16 @@
 
   <h1>Welcome to Pizza Squad</h1>
   <br><br>
+<div class="container">
+  </div>
+    <div class="col-sm-5">
+      <%= link_to "Create Event", new_event_path, {class:"btn btn-lg btn-primary"} %><br><br>
+      <%= link_to "Upcoming Events", events_path, {class:"btn btn-lg btn-primary"}%>
+    </div>
 
-  <%= link_to "Create Event", new_event_path, {class:"btn btn-lg btn-primary"} %><br><br>
-  <%= link_to "Upcoming Events", events_path, {class:"btn btn-lg btn-primary"}%>
+  <div class="col-sm-7">
+    <%= image_tag(@rand_giphy_image) %>
+  </div>
 
 </div>
 

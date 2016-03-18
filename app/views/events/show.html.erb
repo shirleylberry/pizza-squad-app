@@ -34,8 +34,9 @@
 
 <div class="col-sm-12">
 
-  <%= link_to "Add Order", input_num_slices_path(@event), {class:"btn btn-xs btn-primary"}%>
-  <%= link_to "Edit Event", edit_event_path(@event),{class:"btn btn-xs btn-primary"} if @event.president.user == current_user%>
+  <%= link_to "Add Order", input_num_slices_path(@event), {class:"btn btn-s btn-primary"}%>
+  <%= link_to "Edit Event", edit_event_path(@event),{class:"btn btn-s btn-primary"} if @event.president.user == current_user%>
+  <%= link_to "Email Users", user_order_email_path(@event),{class:"btn btn-s btn-primary"}if @event.date?%>
 
-</div>
+  </div>
 </div>

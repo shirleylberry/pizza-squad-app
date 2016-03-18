@@ -23,7 +23,7 @@ class UserMailer < ApplicationMailer
 
   def order_information_user(order)
     @order = order
-    mail(to: @order.user.email, subject: 'Order/Payment Details - #{@order.event.title}')
+    mail(to: @order.user.email, subject: "Order/Payment Details - #{@order.event.title}")
   end
 
 end
