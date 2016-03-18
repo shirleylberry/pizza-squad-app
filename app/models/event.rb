@@ -77,10 +77,25 @@ class Event < ActiveRecord::Base
   # def total_pies
   # end
 
+  def self.todays_events
+    self.all.select do |event|
+      event if event.date.day == Time.now.day && event.date.month == Time.now.month
+    end
+  end
+
+  def self.event_reminder
+    if Event.todays_events.empty? != true
+      events = Event.todays_events
+      events.each do |event|
+        @event = event
+        UserMailer.order_information(@event).deliver_now
+      end
+    end
+  end
+
   #### ANALYTICS ####
 
   def self.average_event_cost
-    
   end
 
 end

@@ -10,7 +10,7 @@ class PagesController < ApplicationController
       resp = Net::HTTP.get_response(URI.parse(url))
       buffer = resp.body
       result = JSON.parse(buffer)
-      @image = result["data"]["fixed_height_downsampled_url"]
+      @rand_giphy_image = result["data"]["fixed_height_downsampled_url"]
 
       @pizzas = Pizza.all
       @users = User.all
