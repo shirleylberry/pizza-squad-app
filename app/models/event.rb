@@ -50,24 +50,31 @@ class Event < ActiveRecord::Base
     "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
   end
 
+
   def active
     Time.now > self.date ? false : true
   end
 
-  def self.todays_events
+  def self.today
     self.all.select do |event|
       event if event.date.day == Time.now.day && event.date.month == Time.now.month
     end
   end
 
 
-  def self.event_reminder
-    if Event.todays_events.empty? != true
-      events = Event.todays_events
+  def self.order_information_admin
+    if Event.today.empty? != true
+      events = Event.today
       events.each do |event|
         @event = event
-        UserMailer.order_information(@event).deliver_now
+        UserMailer.order_information_admin(@event).deliver_now
       end
+    end
+  end
+
+  def order_information_user
+    self.orders.each do |order|
+      UserMailer.order_information_user(order).deliver_now
     end
   end
 

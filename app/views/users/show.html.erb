@@ -1,11 +1,13 @@
 <h2><%= @user.name %></h2>
 
 <h4>Active Orders </h4>
-<% @active_orders.each do |order| %>
-  <p>Order for event <%= link_to(order.event.title, event_order_path(order.event, order)) %>, <%= order.slices.count %> slices</p>
-<% end %>
+<ul class="list-group">
+  <% @active_orders.each do |order| %>
+    <%= link_to "Order for event #{order.event.title}, #{order.slices.count} slices", event_order_path(order.event, order), class:"list-group-item list-format list-fontcolor" %>
+  <% end %>
+</ul>
 
----
+
 
 <h4>Previous Orders </h4>
 <% @inactive_orders.each do |order| %>

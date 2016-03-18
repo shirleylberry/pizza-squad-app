@@ -18,7 +18,11 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+# Many shortcuts available: :hour, :day, :month, :year, :reboot
+set :environment, "development"
+MAILTO=smernick3@gmail.com
 
-every :minute do # Many shortcuts available: :hour, :day, :month, :year, :reboot
-  runner "Event."
+
+every 1.minute do
+  rake "hello"
 end

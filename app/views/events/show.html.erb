@@ -16,10 +16,9 @@
   </p>
 
 <h3>Participants</h3>
-  <ul class="list-group-item">
-
+  <ul class="list-group">
  <% @orders.each do |order| %>
- <li class="list-group-item">  <%= link_to order.user.name, user_path(order.user) %>, <%=order.slices.count %></li>
+ <%= link_to "#{order.user.name}, #{order.slices.count} ", user_path(order.user),  class:"list-group-item list-format list-fontcolor"%>
   <%end%>
 </ul>
 
