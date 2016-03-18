@@ -1,3 +1,5 @@
+<div class="col-sm-6 col-sm-offset-3">
+
 <h1>Order for <%= @order.event.title %></h1>
 <h4><em><%= @order.event.time_left %> until orders close</em></h4>
 
@@ -13,3 +15,5 @@ This user ordered:
 <% if @order.user == current_user %>
   <p><%= link_to "Edit Order", edit_event_order_path(@order.event, @order) %></p>
 <% end %>
+
+</div>

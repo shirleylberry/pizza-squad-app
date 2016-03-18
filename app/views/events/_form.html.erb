@@ -1,6 +1,4 @@
-<h1 style="text-align: center">Create an Event</h1>
-
-<br><br>
+<div class="col-sm-4 col-sm-offset-4">
 
 <% if event.errors.any? %>
   <div class="alert alert-danger" role="alert">
@@ -11,8 +9,11 @@
     </ul>
   </div>
 <%end%>
+<h1 style="text-align:center;">Create An Event</h1>
 
-<div class="col-sm-4 col-sm-offset-4">
+<!-- ,  class: "col-md-4 control-label" -->
+
+
 
   <%= form_for(event, html: { class:"form-horizontal center" }) do |f| %>
     <%= f.label :title%>
@@ -25,5 +26,4 @@
     <%= f.datetime_field :deadline, class: "form-control", :placeholder => "3/14/16 1pm, or tomorrow at 1pm"%> <br>
     <%= f.submit %>
   <% end %>
-
 </div>
