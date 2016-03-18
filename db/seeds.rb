@@ -34,8 +34,8 @@ pres3.user = anna
 pres3.save
 
 # create one pizza
-pizza = Pizza.create(topping: "cheese", price: 17.0)
-pizza2 = Pizza.create(topping: "Mushroom", price: 22.0)
+pizza = Pizza.create(topping: "cheese", price: 17.0, indiv_piece_price: 1.50)
+pizza2 = Pizza.create(topping: "Mushroom", price: 22.0, indiv_piece_price: 2.50)
 
 
 # create two events

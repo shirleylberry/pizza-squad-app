@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317135715) do
+ActiveRecord::Schema.define(version: 20160318153637) do
 
   create_table "events", force: :cascade do |t|
     t.datetime "date"
@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(version: 20160317135715) do
   end
 
   create_table "pizzas", force: :cascade do |t|
-    t.decimal  "price"
+    t.float    "price"
     t.string   "topping"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.float    "indiv_piece_price", default: 1.0
   end
 
   create_table "presidents", force: :cascade do |t|

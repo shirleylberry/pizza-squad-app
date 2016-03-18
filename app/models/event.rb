@@ -71,4 +71,7 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def total_cost
+  end
+
 end
