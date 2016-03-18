@@ -39,7 +39,6 @@ class EventsController < ApplicationController
   end
 
   def edit
-
     redirect_to @event if @event.president.user != current_user
   end
 
@@ -49,7 +48,6 @@ class EventsController < ApplicationController
     else
       render :edit
     end
-
   end
 
 
