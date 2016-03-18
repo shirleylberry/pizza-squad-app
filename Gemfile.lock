@@ -61,6 +61,7 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.1)
+    database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     devise (3.5.6)
       bcrypt (~> 3.0)
@@ -205,6 +206,7 @@ DEPENDENCIES
   chartkick
   chronic
   coffee-rails (~> 4.1.0)
+  database_cleaner
   devise
   faker
   groupdate
