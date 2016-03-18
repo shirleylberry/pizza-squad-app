@@ -15,9 +15,10 @@
 require_relative "../spec_helper.rb"
 
 RSpec.describe Event, type: :model do
-  let(:user) {User.create(name: "Jeff Winger", email: "jeff@coollawyer.com", password: "pierceisweird")}
-  let(:pres_user) {User.create(name: "Britta Perry", email: "britta@activism.com", password: "savethewhales")}
-  let(:president) {President.create(user: pres_user)}
+  let!(:user) {User.create(name: "Jeff Winger", email: "jeff@coollawyer.com", password: "pierceisweird")}
+  let!(:pres_user) {User.create(name: "Britta Perry", email: "britta@activism.com", password: "savethewhales")}
+  let!(:president) {President.create(user: pres_user)}
+
   let!(:event) {Event.create(date: "2016-09-19 07:03:30 -0700", deadline: "2016-09-19 05:03:30 -0700", title: "FSP Pizza Party", description: "yum pizza yum", president: president)}
 
   let(:invalid_date_params) {{date: "2016-09-19 07:03:30 -0700", deadline: "2016-09-10 05:03:30 -0700", title: "FSP Pizza Party", description: "yum pizza yum", president: president}}
@@ -25,7 +26,6 @@ RSpec.describe Event, type: :model do
   let(:no_date_params) {{deadline: "2014-09-19 05:03:30 -0700", title: "FSP Pizza Party", description: "yum pizza yum", president: president}}
   let(:no_deadline_params) {{date: "2014-09-19 07:03:30 -0700", title: "FSP Pizza Party", description: "yum pizza yum", president: president}}
   let(:no_president_params) {{date: "2014-09-19 07:03:30 -0700", deadline: "2014-09-19 05:03:30 -0700", title: "FSP Pizza Party", description: "yum pizza yum"}}
-
 
   describe 'attributes' do
     it 'has a president' do
@@ -75,6 +75,26 @@ RSpec.describe Event, type: :model do
       expect(invalid_event.save).to eq(false)
     end 
   end
+
+  describe '#determine_slices_pies' do
+    it 'splits up the orders into pies and slices' do
+      6.times{User.create(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password)}
+      # byebug
+      30.times{Order.create(user: User.all.sample, event: event)}
+
+      @cheese_pizza = Pizza.create(topping: "cheese", price: 17.0)
+      @shroom_pizza = Pizza.create(topping: "Mushroom", price: 22.0)
+      @pepp_pizza = Pizza.create(topping: "pepperoni", price: 30.0)
+
+      18.times{Slice.create(order: Order.all.sample, pizza: @cheese_pizza)}
+      17.times{Slice.create(order: Order.all.sample, pizza: @shroom_pizza)}
+      13.times{Slice.create(order: Order.all.sample, pizza: @pepp_pizza)}
+      # {"cheese": 18, mushroom: "17", "pepperoni": 13}
+      slices_pies = event.determine_slices_pies
+      expect(slices_pies).to eq({:pies=>{"cheese"=>2, "Mushroom"=>2, "pepperoni"=>2}, :slices=>{"cheese"=>2, "Mushroom"=>1}})
+    end
+  end
+
   # describe '#time_left'
   #   it 'calculates amount of time left before the deadline' do
   #     expect(t).to eq(deadline - DateTime.now)

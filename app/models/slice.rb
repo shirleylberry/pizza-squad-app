@@ -22,6 +22,16 @@ class Slice < ActiveRecord::Base
     end
   end
 
+  # def self.get_slices_per_order(order)
+  #   toppings_hash = Pizza.all.each_with_object({}) do |pizza, pizza_toppings_hash|
+  #     count_of_topping = Slice.joins(:pizza, :order).where("slices.pizza_id = ? AND slices.order_id = ?", pizza.id, order.id)
+  #     pizza_toppings_hash[pizza.topping] = count_of_topping unless count_of_topping == 0
+  #   end
+  #   byebug
+  # end
+
+  #### ANALYTICS ####
+
   def self.total_slices_by_type
     Pizza.pizzas_by_popularity.pluck("pizzas.topping, COUNT(slices.id)")
   end
