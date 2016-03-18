@@ -10,6 +10,6 @@ class PagesController < ApplicationController
     buffer = resp.body
     result = JSON.parse(buffer) 
     # byebug
-    @image = result["data"]["fixed_height_downsampled_url"]
+    @rand_giphy_image = result["data"]["fixed_height_downsampled_url"]
   end
 end
