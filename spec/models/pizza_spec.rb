@@ -2,11 +2,12 @@
 #
 # Table name: pizzas
 #
-#  id         :integer          not null, primary key
-#  price      :decimal(, )
-#  topping    :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                :integer          not null, primary key
+#  price             :float
+#  topping           :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  indiv_piece_price :float            default("1.0")
 #
 
 require_relative "../spec_helper.rb"
