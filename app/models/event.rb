@@ -71,6 +71,7 @@ class Event < ActiveRecord::Base
     end
   end
 
+<<<<<<< HEAD
   # pizza logic
   def determine_remainder(number)
     if number%8 != 0 && number%8 < 4
@@ -107,6 +108,5 @@ class Event < ActiveRecord::Base
       end
     end
     # byebug
-  end
 
 end
