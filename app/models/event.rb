@@ -78,7 +78,7 @@ class Event < ActiveRecord::Base
   # end
 
   #### PIZZA LOGIC ####
-  
+
   def determine_remainder(number)
     if number%8 != 0 && number%8 < 4
       remainder = number % 8
