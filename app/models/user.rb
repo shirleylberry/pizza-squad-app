@@ -30,17 +30,27 @@ class User < ActiveRecord::Base
 
   #### ANALYTICS ####
 
-  def self.most_slices
-    # Slice.select("COUNT(*) as slice_count, users.name").joins(:order => :user).group(:user_id).order("slice_count DESC")
-    best_pizza_eaters = User.all.sort { |b, a| a.slices_consumed <=> b.slices_consumed }
-    best_pizza_eaters.map { |user| [user.name, user.slices_consumed] }
+  # GROUP
+
+  def self.sorted_by_slice_count
+    User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC")
+    # <ActiveRecord::Relation [#<User id: ...>, #<User id: ...>, ...]>
   end
 
-  def self.most_events
-    # Event.select("users.name, COUNT(*) as event_count").joins(:orders => :user).group(:user_id).order("event_count DESC")
-    most_pizza_socials = User.all.sort { |b, a| a.events.count <=> b.events.count }
-    most_pizza_socials.map { |user| [user.name, user.events.count] }
+  def self.users_with_slice_count
+    self.most_slices.pluck("users.name, COUNT(slices.id)")
+    # => [["Anna Nigma", 9], ["Georgianna Schimmel", 7], ["Sammy Mernick", 6], ["Janie Gleichner", 4]]
   end
+
+  def self.sorted_by_event_count
+    User.joins(:events).group(:user_id).order("COUNT(events.id) DESC")
+  end
+
+  def self.users_with_event_count
+    self.most_events.pluck("users.name, COUNT(events.id)")
+  end
+
+  # INDIVIDUAL
 
   def events_attended
     Event.joins(:orders).where(:orders => {user_id: self}).count

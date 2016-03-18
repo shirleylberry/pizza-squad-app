@@ -20,6 +20,10 @@ class Slice < ActiveRecord::Base
       count_of_topping = Slice.joins(:pizza, :order).where("slices.pizza_id = ? AND slices.order_id = ?", pizza.id, order.id).count
       pizza_toppings_hash[pizza.topping] = count_of_topping unless count_of_topping == 0
     end
-    # byebug
   end
+
+  def self.total_slices_by_type
+    Pizza.pizzas_by_popularity.pluck("pizzas.topping, COUNT(slices.id)")
+  end
+
 end

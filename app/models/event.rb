@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
   validates :deadline, presence: true
   validate :deadline_before_date, unless: Proc.new {|e| e.date.nil? || e.deadline.nil?}
 
-  # VALIDATIONS
+  #### VALIDATIONS ####
 
   def deadline_before_date
     if deadline > (date - 1.hours).to_datetime
@@ -54,6 +54,8 @@ class Event < ActiveRecord::Base
     Time.now > self.date ? false : true
   end
 
+  #### ORDERING FUNCTIONALITY ####
+
   # def get_total_slices
   #   # reference the method of the same name on orders
   #   Order.all.select{|order| order.event_id = self.id}
@@ -70,11 +72,15 @@ class Event < ActiveRecord::Base
         old_val + new_val
       end
     end
-    byebug
   end
 
   # def total_pies
   # end
 
+  #### ANALYTICS ####
+
+  def self.average_event_cost
+    
+  end
 
 end

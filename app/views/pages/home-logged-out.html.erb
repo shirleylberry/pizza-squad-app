@@ -1,0 +1,38 @@
+<div class="jumbotron">
+
+    <h1>Welcome to Pizza Squad</h1>
+    <p style="font-size: 2em">Eat More Pizza</p>
+    <br><br>
+
+    <%= link_to "Create Event", new_event_path, {class:"btn btn-lg btn-primary"} %><br><br>
+    <%= link_to "Upcoming Events", events_path, {class:"btn btn-lg btn-primary"}%>
+
+</div>
+
+<div class="col-sm-12">
+  <hr style="border-bottom: 1px solid #ccc; margin-top: 40px">
+</div>
+
+<div class="col-sm-6">
+  <div class="row">
+    <div class="col-sm-6">
+
+      <h4>Slices Consumed by Type</h4>
+      <%= pie_chart Slice.group(:pizza_id).count %>
+
+    </div>
+    <div class="col-sm-6">
+
+      <h4>Pizza Parties by Date</h4>
+      <%= column_chart Event.group("strftime('%d %b %Y'), created_at").count %>
+
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-6">
+
+  <h4>Slices Consumed by Type</h4>
+  <%= pie_chart Slice.group(:pizza_id).count %>
+
+</div>

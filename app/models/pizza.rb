@@ -14,4 +14,10 @@ class Pizza < ActiveRecord::Base
 
   validates :topping, presence: true
   validates :price, presence: true
+
+  #### ANALYTICS ####
+
+  def self.pizzas_by_popularity
+    Pizza.joins(:slices).group(:topping).order("COUNT(slices.id) DESC")
+  end
 end
