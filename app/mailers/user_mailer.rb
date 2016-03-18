@@ -15,6 +15,11 @@ class UserMailer < ApplicationMailer
 
   end
 
+  def order_information(event)
+    @event = event
+    mail(to: @event.president.user.email, subject: "It's Pizza Time")
+  end
+
 
   # def order_confirmation(user)
   #   @user = user

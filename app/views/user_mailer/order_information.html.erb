@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1> <%= @event.title %> is happening today!</h1>
+    <p>  You have successfully reserved <%=@event.slices.count%> slices..  </p>
+    <p>Please pay <%=@event.president.user.name%>  </p>
+  </body>
+</html>
