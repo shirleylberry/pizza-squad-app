@@ -1,6 +1,9 @@
-<h2>How many slices do you want?</h2>
+<div class="col-sm-6 col-sm-offset-3">
 
-<%= form_tag(new_event_order_path(@event), method: :get) do %>
-  <%= text_field_tag :num_slices %>
-  <%= submit_tag "Get some za" %>
-<% end %>
+
+<h2>How many slices do you want?</h2>
+  <%= form_tag(new_event_order_path(@event), method: :get) do %>
+    <%= text_field_tag :num_slices %>
+    <%= submit_tag "Get some za" %>
+  <% end %>
+</div>
