@@ -137,6 +137,10 @@ class Event < ActiveRecord::Base
       UserMailer.order_information_user(order).deliver_now
     end
   end
+
+  def date?
+      Time.now >= self.deadline && Time.now < self.date  
+  end
   #### ANALYTICS ####
 
   def self.average_event_cost

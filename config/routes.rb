@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :slices, only: [:destroy]
   resources :users
 
+  get '/events/:event_id/email'=> 'events#user_order_email', as: 'user_order_email'
   get '/analytics' => 'analytics#index'
 
 
