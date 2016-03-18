@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
 # parse datetime automatically
 gem 'chronic'
+# make cool JS charts with simple Ruby commands
+gem 'chartkick'
 
 # user authentication
 gem 'devise'

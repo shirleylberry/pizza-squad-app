@@ -1,8 +1,17 @@
-<h1>Welcome to Pizza Squad</h1>
+<div class="col-sm-6 col-sm-offset-3">
 
+  <h1>Welcome to Pizza Squad</h1>
+  <br><br>
 
-<br><br>
-<%= link_to "Create Event", new_event_path, {class:"btn btn-lg btn-primary"} %><br><br>
+  <%= link_to "Create Event", new_event_path, {class:"btn btn-lg btn-primary"} %><br><br>
+  <%= link_to "Upcoming Events", events_path, {class:"btn btn-lg btn-primary"}%>
 
+</div>
 
-<%= link_to "Upcoming Events", events_path, {class:"btn btn-lg btn-primary"}%>
+<div class="col-sm-12">
+
+  <hr style="border-bottom: 1px solid #ccc; margin-top: 40px">
+
+  <%= pie_chart Goal.group(:name).count %>
+
+</div>
