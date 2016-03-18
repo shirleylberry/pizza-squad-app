@@ -44,6 +44,7 @@ class Event < ActiveRecord::Base
 
   def time_left
     t = deadline - DateTime.now
+    return "Closed" if t < 0
     mm, ss = t.divmod(60)            #=> [4515, 21]
     hh, mm = mm.divmod(60)           #=> [75, 15]
     dd, hh = hh.divmod(24)           #=> [3, 3]
