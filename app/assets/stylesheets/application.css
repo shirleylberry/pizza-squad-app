@@ -22,12 +22,14 @@
    text-align: center;
  }
 
+.center-heading {
+  text-align: center;
+}
 
 .list-format {
 background-color: #9494b8;
 border: black;
 }
-
 
 .list-fontcolor {
   color: black;

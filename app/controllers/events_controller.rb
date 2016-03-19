@@ -18,6 +18,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @active_events = Event.active_events
   end
 
   def show

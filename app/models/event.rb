@@ -51,11 +51,13 @@ class Event < ActiveRecord::Base
     "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
   end
 
-
-  def active
+  def active?
     Time.now > self.date ? false : true
   end
 
+  def self.active_events
+    Event.where("events.date > ?", Time.now)
+  end
 
   #### ORDERING FUNCTIONALITY ####
 
@@ -143,7 +145,7 @@ class Event < ActiveRecord::Base
   end
 
   def date?
-      Time.now >= self.deadline && Time.now < self.date  
+      Time.now >= self.deadline && Time.now < self.date
   end
 
   def total_slices_price(slices_hash)
