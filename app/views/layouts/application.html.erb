@@ -34,6 +34,7 @@
              <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
            <% else %>
              <li><a <%= link_to "Log In", new_user_session_path %></a></li>
+             <li><a <%= link_to "Sign Up", new_user_registration_path %></a></li>
            <% end %>
        </ul>
      </div><!--/.nav-collapse -->
@@ -57,14 +58,12 @@
     <%= yield %>
 
   </div>
-
-  <div>
-  </div>
-
-  <footer>
-    <p>Contact information: <a href="za.pizzasquad.com">
-      za.pizzasquad.com</a></p>
-  </footer>
-
 </body>
+
+<footer class="footer">
+  <p class="center-align">
+    Contact Us: <em><a href="mailto:za@pizzasquad.com">za@pizzasquad.com</a></em>
+  </p>
+</footer>
+
 </html>

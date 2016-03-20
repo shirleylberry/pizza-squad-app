@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     end
 
     def show
-
+      @slices_by_type = @order.slices_by_type
     end
 
     def input_num_slices

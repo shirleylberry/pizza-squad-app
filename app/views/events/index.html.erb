@@ -1,6 +1,6 @@
 <div class="col-sm-6 col-sm-offset-3">
 
-  <h1 class="center-heading">Upcoming Events</h1>
+  <h1 class="center-align">Upcoming Events</h1>
   <ul class="list-group">
     <% @active_events.each do |event| %>
       <%= link_to event_path(event), class: "list-group-item list-format" do  %>
@@ -10,7 +10,7 @@
     <%end%>
   </ul>
 
-  <h2 class="center-heading">Past Events</h2>
+  <h2 class="center-align">Past Events</h2>
   <ul class="list-group">
     <% (@events - @active_events).each do |event| %>
       <%= link_to event_path(event), class: "list-group-item list-format" do  %>
@@ -19,5 +19,7 @@
       <%end%>
     <%end%>
   </ul>
+
+  <center><%= link_to "Create Event", new_event_path, {class:"btn btn-lg btn-primary"} %></center>
 
 </div>
