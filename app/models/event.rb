@@ -61,9 +61,41 @@ class Event < ActiveRecord::Base
 
   #### ANALYTICS ####
 
-  def self.average_cost
+  # GROUP
+
+  def self.total_cost_per_event
     self.all.map { |event| event.total_price }
   end
+  #=> [20.0, 18.0, 53.0]
+
+  def self.average_cost
+    (total_cost_per_event.inject(0) { |sum, event_cost| sum + event_cost } / self.all.size ).round(2)
+  end
+  #=> 30.33
+
+  def self.total_orders_per_event
+    self.all.map { |event| event.orders.count }
+  end
+  #=> [3, 3, 7]
+
+  def self.average_num_orders
+    (total_orders_per_event.inject(0) { |sum, num_orders| sum + num_orders } / self.all.size.to_f ).round(2)
+  end
+  #=> 4.33
+
+  def self.total_slices_per_event
+    self.all.map do |event|
+      event.orders.inject(0) { |sum, order| sum + order.slices.count }
+    end
+  end
+  #=> [9, 7, 25]
+
+  def self.average_num_slices
+    (total_slices_per_event.inject(0) { |sum, num_slices| sum + num_slices } / self.all.size.to_f ).round(2)
+  end
+  #=> 13.67
+
+  # INDIVIDUAL
 
   def slices_by_type
     Slice.joins(:order, :pizza).where("orders.event_id = ?", self).group("pizzas.topping").count
