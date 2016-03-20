@@ -17,7 +17,7 @@
     <%= @event.slices.count/8 %> Zas
     <p>
     <ul>
-    <% @event.get_pie_types_counts_hash.each do |topping, count| %>
+    <% @event.slices_by_type.each do |topping, count| %>
       <li><%= "#{count} #{topping} slices" %></li>
     <% end if @event.orders.present? %>
     </ul>
