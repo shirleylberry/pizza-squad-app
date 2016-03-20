@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>PizzaSquadApp</title>
+  <link href='https://fonts.googleapis.com/css?family=Patua+One|Lobster|Sansita+One|Oldenburg' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
@@ -15,16 +16,11 @@
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" <%= link_to "Home", root_path %></a>
+        <a class="navbar-brand" href="<%root_path%>" %><span class="pizza-squad">Pizza Squad</span></a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
        <ul class="nav navbar-nav">
+         <li><%= link_to "Home", root_path %></li>
          <li><%= link_to "Events", events_path %></li>
          <li><%= link_to "My Orders", user_path(current_user) if current_user %></li>
          <li><%= link_to "Analytics", analytics_path %></li>
@@ -61,7 +57,7 @@
 </body>
 
 <footer class="footer">
-  <p class="center-align">
+  <p class="text-center">
     Contact Us: <em><a href="mailto:za@pizzasquad.com">za@pizzasquad.com</a></em>
   </p>
 </footer>

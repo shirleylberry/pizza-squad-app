@@ -27,10 +27,6 @@
    text-align: center;
  }
 
-.center-align {
-  text-align: center;
-}
-
 .list-format {
   background-color: #9494b8;
   border: black;
@@ -38,5 +34,15 @@
 
 .list-fontcolor {
   color: black;
+}
 
+.pizza-squad {
+  /*font-family: "Oldenburg";*/
+  /*font-family: "Sansita One";*/
+  font-family: "Patua One";
+  font-size: 1.1em;
+}
+
+.welcome-header {
+  font-family: "Lobster";
 }
