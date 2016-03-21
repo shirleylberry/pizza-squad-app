@@ -6,6 +6,7 @@
 
 <ul>
   <li>Description: <%= @event.description %></li>
+  <li>Restaurant: <%= @event.restaurant.name %></li>
   <li>Time of Event: <%= @event.date.strftime("%A, %B %e, %Y at %l:%M %P") %></li>
   <li>Deadline: <%= @event.deadline.strftime("%A, %B %e, %Y at %l:%M %P") %></li>
   <li>Time Until Deadline: <%= @event.time_left %></li>

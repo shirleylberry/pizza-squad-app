@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318153637) do
+ActiveRecord::Schema.define(version: 20160320214521) do
 
   create_table "events", force: :cascade do |t|
     t.datetime "date"
@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20160318153637) do
     t.text     "description"
     t.datetime "deadline"
     t.integer  "president_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "restaurant_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -36,10 +37,17 @@ ActiveRecord::Schema.define(version: 20160318153637) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.float    "indiv_piece_price", default: 1.0
+    t.integer  "restaurant_id"
   end
 
   create_table "presidents", force: :cascade do |t|
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

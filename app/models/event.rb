@@ -17,11 +17,13 @@ class Event < ActiveRecord::Base
   has_many :users, through: :orders
   has_many :slices, through: :orders
   belongs_to :president
+  belongs_to :restaurant
 
   validates :president_id, presence: true
   validates :title, presence: true
   validates :date, presence: true
   validates :deadline, presence: true
+  validates :restaurant_id, presence: true
   validate :deadline_before_date, unless: Proc.new {|e| e.date.nil? || e.deadline.nil?}
 
   #### VALIDATIONS ####
@@ -143,7 +145,7 @@ class Event < ActiveRecord::Base
   end
 
   def date?
-      Time.now >= self.deadline && Time.now < self.date  
+      Time.now >= self.deadline && Time.now < self.date
   end
 
   def total_slices_price(slices_hash)

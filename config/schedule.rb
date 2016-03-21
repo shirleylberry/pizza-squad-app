@@ -20,9 +20,8 @@
 # Learn more: http://github.com/javan/whenever
 # Many shortcuts available: :hour, :day, :month, :year, :reboot
 set :environment, "development"
-MAILTO=smernick3@gmail.com
 
 
-every 1.minute do
-  rake "hello"
+every 2.minutes do
+  runner "Event.send_email"
 end
