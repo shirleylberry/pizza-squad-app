@@ -69,6 +69,7 @@ class Event < ActiveRecord::Base
 
   # GROUP
 
+
   def self.total_cost_per_event
     self.all.map { |event| event.total_price }
   end
@@ -122,6 +123,7 @@ class Event < ActiveRecord::Base
   #   end
   # end
   # ^^^^^^^^^ DUPLICATE OF slices_by_type ^^^^^^^^^ #
+
 
   # def total_pies
   # end

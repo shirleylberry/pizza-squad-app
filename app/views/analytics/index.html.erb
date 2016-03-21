@@ -1,6 +1,7 @@
-<<<<<<< HEAD
 <div class="col-sm-6 col-sm-offset-3">
   <h1 class="text-center">Analytics</h1>
+  <%= column_chart Slice.joins(:restaurant).group(:name).count %>
+
   <h4>Slices Ordered by Slice Type</h4>
   <%= pie_chart Slice.total_slices_by_type %>
   <br>
@@ -20,3 +21,5 @@
     <% end %>
   </ul>
 </div>
+
+
