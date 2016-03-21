@@ -20,6 +20,14 @@
       <li><%= "#{user.name} has attended #{user.events.count} events"%></li>
     <% end %>
   </ul>
+
+  <br><br>
+  <h4>Most Presidential Users</h4>
+  <ul>
+    <% President.sorted_by_event_count.each do |president| %>
+      <li><%= "#{president.user.name} has hosted #{president.events.count} events" %></li>
+    <% end %>
+  </ul>
 </div>
 
 
