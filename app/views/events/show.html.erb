@@ -27,7 +27,7 @@
   <p><%= "None yet. Add your order to get the pizza party started!" if @orders.empty? %></p>
   <ul class="list-group">
   <% @orders.each do |order| %>
-     <%= link_to "#{order.user.name}, #{order.slices.count} ", user_path(order.user),  class:"list-group-item list-format list-fontcolor"%>
+     <%= link_to "#{order.user.name}, #{order.slices.count} slices", user_path(order.user),  class:"list-group-item list-format list-fontcolor"%>
   <%end%>
 </ul>
 
