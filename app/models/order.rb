@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
   end
 
   def price
-    (self.event.total_price / self.event.slices.count) * self.slices.count
+    ((self.event.total_price / self.event.slices.count) * self.slices.count).round(2)
   end
 
   def slices_by_type
