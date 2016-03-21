@@ -117,6 +117,6 @@ orders3 = [order21, order22, order23, order24, order25, order26, order27, order2
 
 
 
-150.times{Slice.create(order: orders1.sample, pizza: pizzas.sample)}
-150.times{Slice.create(order: orders2.sample, pizza: pizzas2.sample)}
-150.times{Slice.create(order: orders3.sample, pizza: pizzas3.sample)}
+170.times{Slice.create(order: orders1.sample, pizza: pizzas.sample)}
+111.times{Slice.create(order: orders2.sample, pizza: pizzas2.sample)}
+68.times{Slice.create(order: orders3.sample, pizza: pizzas3.sample)}
