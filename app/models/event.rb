@@ -58,6 +58,9 @@ class Event < ActiveRecord::Base
     Time.now > self.date ? false : true
   end
 
+  def self.pizza_parties_by_date
+    Event.group("strftime('%d %b %Y'), created_at").count
+  end
 
   #### ORDERING FUNCTIONALITY ####
 
@@ -77,6 +80,7 @@ class Event < ActiveRecord::Base
         old_val + new_val
       end
     end
+    byebug
   end
 
   # def total_pies
@@ -99,6 +103,7 @@ class Event < ActiveRecord::Base
 
   def determine_slices_pies
     pie_types_hash = get_pie_types_counts_hash
+
     pies_slices_hash = {pies: {}, slices: {}}
     order_hash = pie_types_hash.each_with_object(pies_slices_hash) do |(topping, number), pies_slices_hash|
       num_slices, num_pies = determine_remainder(number)
@@ -114,6 +119,7 @@ class Event < ActiveRecord::Base
     pie_types_hash = self.orders.each_with_object({}) do |order, orders_hash|
       orders_hash[order.id] = Slice.get_num_slices_per_order(order)
     end
+    byebug
     full_types_counts_hash = pie_types_hash.values.inject do |memo, order_hash|
       memo.merge(order_hash) { |key, old_val, new_val| old_val + new_val }
     end
