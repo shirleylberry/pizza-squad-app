@@ -31,9 +31,8 @@ class User < ActiveRecord::Base
   #### ANALYTICS ####
 
   # GROUP
-
   def self.sorted_by_slice_count
-      User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC")
+      User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC").limit(5)
     # <ActiveRecord::Relation [#<User id: ...>, #<User id: ...>, ...]>
   end
 
@@ -43,11 +42,15 @@ class User < ActiveRecord::Base
   end
 
   def self.sorted_by_event_count
-    User.joins(:events).group(:user_id).order("COUNT(events.id) DESC")
+    User.joins(:events).group(:user_id).order("COUNT(events.id) DESC").limit(5)
   end
 
   def self.users_with_event_count
     self.sorted_by_event_count.pluck("users.name, COUNT(events.id)")
+  end
+
+  def self.users_with_president_count
+    User.joins(:events).group(:president_id).order("COUNT(events.id) DESC").limit(5)
   end
 
   # INDIVIDUAL

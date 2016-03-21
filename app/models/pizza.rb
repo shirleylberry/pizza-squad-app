@@ -20,6 +20,6 @@ class Pizza < ActiveRecord::Base
   #### ANALYTICS ####
 
   def self.pizzas_by_popularity
-    Pizza.joins(:slices).group(:topping).order("COUNT(slices.id) DESC")
+    Pizza.joins(:slices).group(:topping).order("COUNT(slices.id) DESC").limit(3)
   end
 end

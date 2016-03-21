@@ -19,13 +19,13 @@
     <div class="col-sm-6">
 
       <h4>Slices Consumed by Type</h4>
-      <%= pie_chart Slice.group(:pizza_id).count %>
+      <%= pie_chart Slice.total_slices_by_type %>
 
     </div>
     <div class="col-sm-6">
 
       <h4>Pizza Parties by Date</h4>
-      <%= column_chart Event.group("strftime('%d %b %Y'), created_at").count %>
+      <%= column_chart Event.pizza_parties_by_date %>
 
     </div>
   </div>
@@ -34,6 +34,6 @@
 <div class="col-sm-6">
 
   <h4>Slices Consumed by Type</h4>
-  <%= pie_chart Slice.group(:pizza_id).count %>
+  <%= pie_chart Slice.total_slices_by_type %>
 
 </div>

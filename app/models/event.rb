@@ -57,6 +57,10 @@ class Event < ActiveRecord::Base
     Time.now > self.date ? false : true
   end
 
+  def self.pizza_parties_by_date
+    Event.group("strftime('%d %b %Y'), created_at").count
+  end
+
   def self.active_events
     Event.where("events.date > ?", Time.now).sort { |a, b| b.date <=> a.date }
   end
@@ -64,6 +68,7 @@ class Event < ActiveRecord::Base
   #### ANALYTICS ####
 
   # GROUP
+
 
   def self.total_cost_per_event
     self.all.map { |event| event.total_price }
@@ -89,6 +94,7 @@ class Event < ActiveRecord::Base
     self.all.map do |event|
       event.orders.inject(0) { |sum, order| sum + order.slices.count }
     end
+    byebug
   end
   #=> [9, 7, 25]
 
@@ -117,6 +123,7 @@ class Event < ActiveRecord::Base
   #   end
   # end
   # ^^^^^^^^^ DUPLICATE OF slices_by_type ^^^^^^^^^ #
+
 
   # def total_pies
   # end
