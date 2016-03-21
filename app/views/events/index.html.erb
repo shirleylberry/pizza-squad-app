@@ -1,12 +1,49 @@
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-8 col-sm-offset-2">
 
-<h1>Upcoming Events</h1>
-<ul class="list-group">
-  <% @events.each do |event| %>
-    <%= link_to  event_path(event), class: "list-group-item list-format" do  %>
-      <h4 class="list-group-item-heading"><%= event.title%></h4>
-      <p class="list-group-item-text">  <%= event.description%>  </p>
+  <h1 class="text-center">Upcoming Events</h1>
+  <ul class="list-group">
+    <% @active_events.each do |event| %>
+      <%= link_to event_path(event), class: "list-group-item list-format" do  %>
+      <div class="row">
+        <div class="col-xs-2">
+          <h4 class="text-center"><%= event.date.strftime("%b %e") %></h4>
+          <p class="text-center"><%= event.date.strftime("%l:%M %P") %></p>
+        </div>
+        <div class="col-xs-8">
+          <h4><%= event.title%></h4>
+          <p class="list-group-item-text">  <%= event.description%></p>
+        </div>
+        <div class="col-xs-2">
+          <p class="text-right" style="font-size: 3em; margin-bottom: -10%;"><%= event.users.count %></p>
+          <p class="text-right"><small>people</small></p>
+        </div>
+      </div>
+      <%end%>
     <%end%>
-  <%end%>
-</ul>
+  </ul>
+
+  <h2 class="text-center">Past Events</h2>
+  <ul class="list-group">
+    <% @inactive_events.each do |event| %>
+      <%= link_to event_path(event), class: "list-group-item list-format" do  %>
+      <div class="row">
+        <div class="col-xs-2">
+          <h4 class="text-center"><%= event.date.strftime("%b %e") %></h4>
+          <p class="text-center"><%= event.date.strftime("%l:%M %P") %></p>
+        </div>
+        <div class="col-xs-8">
+          <h4><%= event.title%></h4>
+          <p class="list-group-item-text">  <%= event.description%></p>
+        </div>
+        <div class="col-xs-2">
+          <p class="text-right" style="font-size: 3em; margin-bottom: -10%;"><%= event.users.count %></p>
+          <p class="text-right"><small>people</small></p>
+        </div>
+      </div>
+      <%end%>
+    <%end%>
+  </ul>
+
+  <center><%= link_to "Create An Event", new_event_path, {class:"btn btn-lg btn-primary"} %></center>
+
 </div>

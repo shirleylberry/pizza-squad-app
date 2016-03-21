@@ -15,6 +15,11 @@
  */
  body {
    padding-top: 50px;
+   margin-bottom: 50px;
+ }
+
+ .footer {
+   padding-top: 50px;
  }
 
  .starter-template {
@@ -22,14 +27,22 @@
    text-align: center;
  }
 
-
 .list-format {
-background-color: #9494b8;
-border: black;
+  background-color: #9494b8;
+  border: black;
 }
-
 
 .list-fontcolor {
   color: black;
+}
 
+.pizza-squad {
+  /*font-family: "Oldenburg";*/
+  /*font-family: "Sansita One";*/
+  font-family: "Patua One";
+  font-size: 1.1em;
+}
+
+.welcome-header {
+  font-family: "Lobster";
 }

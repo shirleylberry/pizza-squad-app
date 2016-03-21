@@ -26,5 +26,7 @@ class Order < ActiveRecord::Base
     (self.event.total_price / self.event.slices.count) * self.slices.count
   end
 
-  
+  def slices_by_type
+    Slice.joins(:order, :pizza).where("orders.id = ?", self).group("pizzas.topping").count
+  end
 end
