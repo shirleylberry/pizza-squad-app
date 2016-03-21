@@ -4,4 +4,9 @@ class Restaurant < ActiveRecord::Base
   has_many :slices, through: :pizzas
 
 
+
+  def restaurant_profit
+
+  end
+
 end

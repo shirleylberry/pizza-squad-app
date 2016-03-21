@@ -1,1 +1,6 @@
 <h1>Analytics</h1>
+
+
+<%= column_chart Slice.joins(:restaurant).group(:name).count %>
+
+<%= bar_chart Slice.joins(:restaurant).group(:name).count, colors: ["#555", "#999", "#111"] %>

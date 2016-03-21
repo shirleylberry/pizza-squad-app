@@ -11,6 +11,7 @@
 
 class Slice < ActiveRecord::Base
   belongs_to :pizza
+  has_one :restaurant, through: :pizza
   belongs_to :order
 
   validates :pizza_id, presence: true

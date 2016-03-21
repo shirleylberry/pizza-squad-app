@@ -5,7 +5,7 @@
   </head>
   <body>
     <h1> <%= @order.event.title %> is officially happening!</h1>
-    <p>  You ordered <%=@order.slices.count%>, and it will cost _____  </p>
+    <p>  You ordered <%=@order.slices.count%> slices, and it will cost _____  </p>
     <p>Please pay <%=@order.event.president.user.name%> on Venmo or in cash before <%=@order.event.date.time%> </p>
   </body>
 </html>

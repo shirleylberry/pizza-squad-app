@@ -67,17 +67,6 @@ class Event < ActiveRecord::Base
   #   total_slices = Event.sum(:orders) #.where('orders.event_id = ?', self.id)
   # end
 
-  def get_pie_types_counts_hash
-    # pie_types = {"cheese": 10, "mushroom": 4, "pepperoni": 3}
-    pie_types_hash = self.orders.each_with_object({}) do |order, orders_hash|
-      orders_hash[order.id] = Slice.get_num_slices_per_order(order)
-    end
-    full_types_counts_hash = pie_types_hash.values.inject do |memo, order_hash|
-      memo.merge(order_hash) do |key, old_val, new_val|
-        old_val + new_val
-      end
-    end
-  end
 
   # def total_pies
   # end
