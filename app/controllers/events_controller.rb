@@ -17,8 +17,9 @@ class EventsController < ApplicationController
 
 
   def index
-    @events = Event.all
+    @events = Event.all.sort_by { |event| event.date }
     @active_events = Event.active_events
+    @inactive_events = (@events - @active_events).sort { |a, b| b.date <=> a.date }
   end
 
   def show

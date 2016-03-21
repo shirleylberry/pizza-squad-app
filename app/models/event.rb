@@ -58,7 +58,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.active_events
-    Event.where("events.date > ?", Time.now)
+    Event.where("events.date > ?", Time.now).sort { |a, b| b.date <=> a.date }
   end
 
   #### ANALYTICS ####
@@ -152,7 +152,6 @@ class Event < ActiveRecord::Base
       pies_slices_hash[:slices][topping] = num_slices unless num_slices == 0
       pies_slices_hash[:pies][topping] = num_pies
     end
-    order_hash
   end
 
   def total_slices_price(slices_hash)
