@@ -29,8 +29,8 @@ class UsersController < ApplicationController
     # end
 
   def show
-    @active_orders = @user.orders.select{|order| order.event.active}
-    @inactive_orders = @user.orders.select{|order| !order.event.active}
+    @active_orders = @user.orders.select{|order| order.event.active?}
+    @inactive_orders = @user.orders.select{|order| !order.event.active?}
   end
 
   private

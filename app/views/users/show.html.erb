@@ -1,18 +1,49 @@
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-4">
+  <h4>Your Analytics</h4>
+
+</div>
+
+
+<div class="col-sm-6">
 
 <h2><%= @user.name %></h2>
 
 <h4>Active Orders </h4>
 <ul class="list-group">
   <% @active_orders.each do |order| %>
-    <%= link_to "Order for event #{order.event.title}, #{order.slices.count} slices", event_order_path(order.event, order), class:"list-group-item list-format list-fontcolor" %>
-  <% end %>
+    <%= link_to event_order_path(order.event, order), class: "list-group-item list-format" do  %>
+    <div class="row">
+      <div class="col-xs-10">
+        <h5><%= order.event.title%></h5>
+        <p class="list-group-item-text">  <%= order.event.description%></p>
+      </div>
+      <div class="col-xs-2">
+        <p class="text-right" style="font-size: 3em; margin-bottom: -10%;"><%= order.slices.count %></p>
+        <p class="text-right"><small>slices</small></p>
+      </div>
+    </div>
+    <%end%>
+  <%end%>
 </ul>
 
 <h4>Previous Orders </h4>
 <ul class="list-group">
   <% @inactive_orders.each do |order| %>
-    <%= link_to "Order for event #{order.event.title}, #{order.slices.count} slices", event_order_path(order.event, order), class:"list-group-item list-format list-fontcolor" %>
-  <% end %>
+    <%= link_to event_order_path(order.event, order), class: "list-group-item list-format" do  %>
+    <div class="row">
+      <div class="col-xs-10">
+        <h5><%= order.event.title%></h5>
+        <p class="list-group-item-text">  <%= order.event.description%></p>
+      </div>
+      <div class="col-xs-2">
+        <p class="text-right" style="font-size: 3em; margin-bottom: -10%;"><%= order.slices.count %></p>
+        <p class="text-right"><small>slices</small></p>
+      </div>
+    </div>
+    <%end%>
+  <%end%>
 </ul>
+
+<div class="col-sm-2"></div>
+
 </div>

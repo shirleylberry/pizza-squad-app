@@ -33,12 +33,12 @@ class User < ActiveRecord::Base
   # GROUP
 
   def self.sorted_by_slice_count
-    User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC")
+      User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC")
     # <ActiveRecord::Relation [#<User id: ...>, #<User id: ...>, ...]>
   end
 
   def self.users_with_slice_count
-    self.most_slices.pluck("users.name, COUNT(slices.id)")
+    self.sorted_by_slice_count.pluck("users.name, COUNT(slices.id)")
     # => [["Anna Nigma", 9], ["Georgianna Schimmel", 7], ["Sammy Mernick", 6], ["Janie Gleichner", 4]]
   end
 
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def self.users_with_event_count
-    self.most_events.pluck("users.name, COUNT(events.id)")
+    self.sorted_by_event_count.pluck("users.name, COUNT(events.id)")
   end
 
   # INDIVIDUAL
@@ -58,6 +58,10 @@ class User < ActiveRecord::Base
 
   def slices_consumed
     Slice.joins(:order => :user).where(:orders => {user_id: self}).count
+  end
+
+  def slices_consumed_by_type
+    Pizza.joins(:slices).where(:orders => {user_id: self}).group(:topping).order("COUNT(slices.id) DESC")
   end
 
   def total_consumed

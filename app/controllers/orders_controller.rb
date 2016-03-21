@@ -11,14 +11,14 @@
 
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :add_slice]
-  before_action :set_event, only: [:new, :edit, :destroy, :input_num_slices, :add_slice]
+  before_action :set_event, only: [:new, :edit, :show, :destroy, :input_num_slices, :add_slice]
 
     def index
 
     end
 
     def show
-
+      @slices_by_type = @order.slices_by_type
     end
 
     def input_num_slices

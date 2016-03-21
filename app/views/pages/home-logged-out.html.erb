@@ -1,10 +1,11 @@
   <div class="jumbotron" style="background: url(http://s27.postimg.org/cj0snkc5v/pizza_fade.jpg) no-repeat; margin: -2em -1.1em -2em -1.1em">
 
-    <h1>Welcome to Pizza Squad</h1>
+    <h1 class="welcome-header">Welcome to Pizza Squad</h1>
     <p style="font-size: 2em">Eat More Pizza</p>
     <br><br>
 
     <br><br>
+    <%= link_to "Sign Up", new_user_registration_path, {class:"btn btn-lg btn-primary"} %><br><br>
     <%= link_to "Upcoming Events", events_path, {class:"btn btn-lg btn-primary"}%>
 
 </div>

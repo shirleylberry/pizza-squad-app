@@ -31,4 +31,22 @@ class President < ActiveRecord::Base
   def events_hosted
     Event.joins(:president).where(:president_id => self).count
   end
+
+  def num_participants_per_event
+    self.events.map { |event| event.users.count }
+  end
+
+  def average_num_participants
+    (num_participants_per_event.inject(0) { |sum, num_participants| sum + num_participants } / self.events.size ).round(2)
+  end
+
+  def num_slices_per_event
+    self.events.map do |event|
+      event.orders.inject(0) { |sum, order| sum + order.slices.count }
+    end
+  end
+
+  def average_num_slices
+    (num_slices_per_event.inject(0) { |sum, num_slices| sum + num_slices } / self.events.size ).round(2)
+  end
 end
