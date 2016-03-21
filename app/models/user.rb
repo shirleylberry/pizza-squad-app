@@ -56,16 +56,28 @@ class User < ActiveRecord::Base
     Event.joins(:orders).where(:orders => {user_id: self}).count
   end
 
-  def slices_consumed
-    Slice.joins(:order => :user).where(:orders => {user_id: self}).count
+  def events_hosted
+    Event.joins(:president => :user).where(:presidents => {user_id: self}).count
+  end
+
+  def slices_by_type
+    Pizza.joins(:slices => :order).where(:orders => {user_id: self}).group(:topping).order("COUNT(slices.id) DESC")
   end
 
   def slices_consumed_by_type
-    Pizza.joins(:slices).where(:orders => {user_id: self}).group(:topping).order("COUNT(slices.id) DESC")
+    slices_by_type.pluck("pizzas.topping", "COUNT(slices.id) DESC")
+  end
+
+  def avg_num_slices_bought
+    slices_consumed / events_attended
   end
 
   def total_consumed
-    "You've eaten #{whole_pizzas_consumed} pizzas and #{slice_remainders_consumed} slices."
+    "You've eaten #{whole_pizzas_consumed} pizzas and #{slice_remainders_consumed} slices!"
+  end
+
+  def slices_consumed
+    Slice.joins(:order => :user).where(:orders => {user_id: self}).count
   end
 
   def whole_pizzas_consumed
@@ -80,8 +92,8 @@ class User < ActiveRecord::Base
     slices_consumed * 272
   end
 
-  def miles_needed_to_walk
-    calories_consumed / 100
+  def miles_needed_to_run
+    calories_consumed / 120
   end
 
 end

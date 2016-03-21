@@ -1,12 +1,45 @@
 <div class="col-sm-4">
-  <h4>Your Analytics</h4>
+  <h2>Your Analytics</h2>
+
+  <br>
+  <div class="col-xs-6">
+    <p>You've attended...</p>
+    <p class="text-center" style="font-size: 3em; margin-bottom: -10%;"><%= @user.events_attended %></p>
+    <p class="text-center"><small>event(s)</small></p>
+  </div>
+
+  <div class="col-xs-6">
+    <p>You've hosted...</p>
+    <p class="text-center" style="font-size: 3em; margin-bottom: -10%;"><%= @user.events_hosted %></p>
+    <p class="text-center"><small>event(s)</small></p>
+  </div>
+
+  <hr class="col-xs-10 col-xs-offset-1">
+  <h5>You order an average of <span style="font-size: 2em"><%= @user.avg_num_slices_bought %></span> slices</h5>
+
+  <%= pie_chart @user.slices_consumed_by_type, width: "110%", chartArea:  {'width': '150%', 'height': '40%'} %>
+
+  <hr>
+  <em><h5><%= @user.total_consumed %></h5></em>
+  <hr>
+
+  <div class="col-xs-6">
+    <p>You've consumed...</p>
+    <p class="text-right" style="font-size: 3em; margin-bottom: -10%;"><%= @user.calories_consumed %></p>
+    <p class="text-right"><small>calories</small></p>
+  </div>
+
+  <div class="col-xs-6">
+    <p>You'd need to run...</p>
+    <p class="text-right" style="font-size: 3em; margin-bottom: -10%;"><%= @user.miles_needed_to_run %></p>
+    <p class="text-right"><small>miles</small></p>
+  </div>
 
 </div>
 
-
 <div class="col-sm-6">
 
-<h2><%= @user.name %></h2>
+<h1><%= @user.name %></h1>
 
 <h4>Active Orders </h4>
 <ul class="list-group">

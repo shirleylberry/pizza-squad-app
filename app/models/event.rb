@@ -148,7 +148,6 @@ class Event < ActiveRecord::Base
     pies_slices_hash = {pies: {}, slices: {}}
     pie_types_hash.each_with_object(pies_slices_hash) do |(topping, number), pies_slices_hash|
       num_slices, num_pies = determine_remainder(number)
-      # byebug
       pies_slices_hash[:slices][topping] = num_slices unless num_slices == 0
       pies_slices_hash[:pies][topping] = num_pies
     end
