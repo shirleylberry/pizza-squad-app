@@ -2,6 +2,8 @@
 
 <h1 class="text-center">Pizza Order</h1>
 
+<h5><%= event.restaurant.name %></h5><br>
+
 <% if order.errors.any? %>
   <ul>
     <% order.errors.full_messages.each do |msg| %>
@@ -13,7 +15,7 @@
 
 <%=form_for([event, order]) do |f| %>
     <%= f.fields_for :slices do |slice_form|%>
-      Slice <%= slice_form.collection_select(:pizza_id, Pizza.all, :id, :topping) %>
+      Slice <%= slice_form.collection_select(:pizza_id, event.restaurant.pizzas.all, :id, :topping) %>
       <%= link_to "Remove Slice", slice_path(slice_form.object), :method => :delete, :data => {:confirm => "No 'za bro?"} if order.id && slice_form.object.id %>
       <br><br>
     <%end%>

@@ -12,6 +12,7 @@
 
 class Pizza < ActiveRecord::Base
   has_many :slices
+  belongs_to :restaurant
 
   validates :topping, presence: true
   validates :price, presence: true

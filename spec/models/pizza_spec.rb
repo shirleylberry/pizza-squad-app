@@ -13,7 +13,8 @@
 require_relative "../spec_helper.rb"
 
 RSpec.describe Pizza, type: :model do
-  let!(:pizza) {Pizza.create(price: "3", topping: "taco")}
+  let(:restaurant) {Restaurant.create(name: "Joe's Pizza")}
+  let!(:pizza) {Pizza.create(price: "3", topping: "taco", restaurant: restaurant)}
   let(:no_price_attributes){{topping: "all the cheese"}}
   let(:no_topping_attributes){{price: "17.0"}}
 
@@ -24,6 +25,10 @@ RSpec.describe Pizza, type: :model do
 
     it 'has a topping' do
       expect(pizza.topping).to eq("taco")
+    end
+
+    it "has a restaurant" do
+      expect(pizza.restaurant.name).to eq("Joe's Pizza")
     end
   end
 
@@ -39,4 +44,3 @@ RSpec.describe Pizza, type: :model do
     end
   end
 end
-

@@ -17,11 +17,13 @@ class Event < ActiveRecord::Base
   has_many :users, through: :orders
   has_many :slices, through: :orders
   belongs_to :president
+  belongs_to :restaurant
 
   validates :president_id, presence: true
   validates :title, presence: true
   validates :date, presence: true
   validates :deadline, presence: true
+  validates :restaurant_id, presence: true
   validate :deadline_before_date, unless: Proc.new {|e| e.date.nil? || e.deadline.nil?}
 
   #### VALIDATIONS ####
@@ -150,6 +152,7 @@ class Event < ActiveRecord::Base
       pies_slices_hash[:slices][topping] = num_slices unless num_slices == 0
       pies_slices_hash[:pies][topping] = num_pies
     end
+    order_hash
   end
 
   def total_slices_price(slices_hash)
