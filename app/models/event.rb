@@ -58,7 +58,10 @@ class Event < ActiveRecord::Base
   end
 
   def self.pizza_parties_by_date
-    Event.group("strftime('%d %b %Y'), created_at").count
+    Event.all.each_with_object(Hash.new(0)) do |event, event_hash|
+      event_hash[event.date] += 1
+    end
+    # Event.group("strftime('%d %b %Y'), created_at").count
   end
 
   def self.active_events
