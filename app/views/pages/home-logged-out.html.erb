@@ -7,26 +7,34 @@
   </div>
 </div>
 
-<div class="col-sm-6">
-  <div class="row">
-    <div class="col-sm-6">
-
-      <h4>Slices Consumed by Type</h4>
-      <%= pie_chart Slice.group(:pizza_id).count %>
-
-    </div>
-    <div class="col-sm-6">
-
-      <h4>Pizza Parties by Date</h4>
-      <%= column_chart Event.group("strftime('%d %b %Y'), created_at").count %>
-
-    </div>
-  </div>
+<div class="container-fluid" style="border-bottom: 1px solid #ccc">
+  <h2 class="text-center">We've helped people consume <%= @slices.count %> slices of pizza on <%= @events.count %> occasions.</h2>
+  <br><br>
 </div>
 
-<div class="col-sm-6">
+<div class="container-fluid">
+  <br><br>
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-6">
 
-  <h4>Slices Consumed by Type</h4>
-  <%= pie_chart Slice.group(:pizza_id).count %>
+        <h4>Slices Consumed by Type</h4>
+        <%= pie_chart Slice.group(:pizza_id).count %>
 
+      </div>
+      <div class="col-sm-6">
+
+        <h4>Pizza Parties by Date</h4>
+        <%= column_chart Event.group("strftime('%d %b %Y'), created_at").count %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+
+    <h4>Slices Consumed by Type</h4>
+    <%= pie_chart Slice.group(:pizza_id).count %>
+
+  </div>
 </div>

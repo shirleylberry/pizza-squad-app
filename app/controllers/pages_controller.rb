@@ -19,6 +19,8 @@ class PagesController < ApplicationController
 
       render file: '/app/views/pages/home-logged-in'
     else
+      @slices = Slice.all
+      @events = Event.all
       render file: '/app/views/pages/home-logged-out'
     end
   end
