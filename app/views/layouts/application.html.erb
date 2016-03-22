@@ -5,10 +5,10 @@
   <link href='https://fonts.googleapis.com/css?family=Patua+One|Lobster|Sansita+One|Oldenburg' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,7 +37,10 @@
   </nav>
 
   <% if flash.present? %>
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-info alert-dismissable fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
       <%= flash[:notice] if flash[:notice] %>
       <%= flash[:alert] if flash[:alert] %>
     </div>
@@ -48,7 +51,7 @@
 </body>
 
 <div class="footer">
-  <div class="container-fluid">
+  <div class="container">
     <p class="footer-block text-center">Contact Us: <em><a href="mailto:za@pizzasquad.com">za@pizzasquad.com</a></em></p>
   </div>
 </div>
