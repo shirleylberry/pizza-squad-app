@@ -18,6 +18,14 @@
    margin-bottom: 50px;
  }
 
+ .jumbotron {
+    background: url('http://s27.postimg.org/cj0snkc5v/pizza_fade.jpg');
+    background-size: cover;
+    margin-bottom: 0px;
+    height: 470px;
+    border-bottom: 1px solid #ccc;
+}
+
  .footer {
    padding-top: 50px;
  }

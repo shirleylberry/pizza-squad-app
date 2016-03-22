@@ -1,18 +1,87 @@
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-4">
+  <h2>Your Analytics</h2>
 
-<h2><%= @user.name %></h2>
+  <br>
+  <div class="col-xs-6">
+    <p>You've attended...</p>
+    <p class="text-center" style="font-size: 3em; margin: -2%;"><%= @user.events_attended %></p>
+    <p class="text-center"><small>event(s)</small></p>
+  </div>
+
+  <div class="col-xs-6">
+    <p>You've hosted...</p>
+    <p class="text-center" style="font-size: 3em; margin: -2%;"><%= @user.events_hosted %></p>
+    <p class="text-center"><small>event(s)</small></p>
+  </div>
+
+  <hr class="col-xs-10 col-xs-offset-1">
+  <h5 class="text-center">You order an average of <span style="font-size: 2em"><%= @user.avg_num_slices_bought %></span> slices</h5>
+
+  <%= pie_chart @user.slices_consumed_by_type, width: "110%", chartArea:  {'width': '150%', 'height': '40%'} %>
+
+  <hr>
+  <em><h5 class="text-center"><%= @user.total_consumed %></h5></em>
+  <hr>
+
+  <div class="col-xs-6">
+    <p>You've consumed...</p>
+    <p class="text-right" style="font-size: 3em; margin: -2%;"><%= @user.calories_consumed %></p>
+    <p class="text-right"><small>calories</small></p>
+  </div>
+
+  <div class="col-xs-6">
+    <p>You'd need to run...</p>
+    <p class="text-right" style="font-size: 3em; margin: -2%;"><%= @user.miles_needed_to_run %></p>
+    <p class="text-right"><small>miles</small></p>
+  </div>
+
+</div>
+
+<div class="col-sm-6">
+
+<h1><%= @user.name %></h1>
 
 <h4>Active Orders </h4>
 <ul class="list-group">
+  <em><%= "No current orders. Get in on some pizza!" if @active_orders.empty? %></em>
   <% @active_orders.each do |order| %>
-    <%= link_to "Order for event #{order.event.title}, #{order.slices.count} slices", event_order_path(order.event, order), class:"list-group-item list-format list-fontcolor" %>
-  <% end %>
+    <%= link_to event_order_path(order.event, order), class: "list-group-item list-format" do  %>
+    <div class="row">
+      <div class="col-xs-2">
+        <h4 class="text-center"><%= order.event.date.strftime("%b %e") %></h4>
+        <p class="text-center"><%= order.event.date.strftime("%l:%M %P") %></p>
+      </div>
+      <div class="col-xs-8">
+        <h5><%= order.event.title%></h5>
+        <p class="list-group-item-text">  <%= order.event.description%></p>
+        <em><p class="list-group-item-text">  Ordering closes <%= order.event.deadline.strftime("%A, %B %e at %l:%M %P") %></p></em>
+      </div>
+      <div class="col-xs-2">
+        <p class="text-right" style="font-size: 3em; margin-bottom: -10%;"><%= order.slices.count %></p>
+        <p class="text-right"><small>slices</small></p>
+      </div>
+    </div>
+    <%end%>
+  <%end%>
 </ul>
 
 <h4>Previous Orders </h4>
 <ul class="list-group">
+  <em><%= "You haven't ordered any pizza. What are you waiting for?!" if @inactive_orders.empty? %></em>
   <% @inactive_orders.each do |order| %>
-    <%= link_to "Order for event #{order.event.title}, #{order.slices.count} slices", event_order_path(order.event, order), class:"list-group-item list-format list-fontcolor" %>
-  <% end %>
+    <%= link_to event_order_path(order.event, order), class: "list-group-item list-format" do  %>
+    <div class="row">
+      <div class="col-xs-10">
+        <h5><%= order.event.title%></h5>
+        <p class="list-group-item-text">  <%= order.event.description%></p>
+      </div>
+      <div class="col-xs-2">
+        <h2 class="text-right" style="font-size: 3em; margin-bottom: -10%;"><%= order.slices.count %></p>
+        <p class="text-right"><small>slices</small></p>
+      </div>
+    </div>
+    <%end%>
+  <%end%>
 </ul>
+
 </div>

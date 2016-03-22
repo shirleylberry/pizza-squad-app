@@ -33,12 +33,12 @@ class User < ActiveRecord::Base
   # GROUP
 
   def self.sorted_by_slice_count
-    User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC")
+      User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC")
     # <ActiveRecord::Relation [#<User id: ...>, #<User id: ...>, ...]>
   end
 
   def self.users_with_slice_count
-    self.most_slices.pluck("users.name, COUNT(slices.id)")
+    self.sorted_by_slice_count.pluck("users.name, COUNT(slices.id)")
     # => [["Anna Nigma", 9], ["Georgianna Schimmel", 7], ["Sammy Mernick", 6], ["Janie Gleichner", 4]]
   end
 
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def self.users_with_event_count
-    self.most_events.pluck("users.name, COUNT(events.id)")
+    self.sorted_by_event_count.pluck("users.name, COUNT(events.id)")
   end
 
   # INDIVIDUAL
@@ -56,12 +56,28 @@ class User < ActiveRecord::Base
     Event.joins(:orders).where(:orders => {user_id: self}).count
   end
 
-  def slices_consumed
-    Slice.joins(:order => :user).where(:orders => {user_id: self}).count
+  def events_hosted
+    Event.joins(:president => :user).where(:presidents => {user_id: self}).count
+  end
+
+  def slices_by_type
+    Pizza.joins(:slices => :order).where(:orders => {user_id: self}).group(:topping).order("COUNT(slices.id) DESC")
+  end
+
+  def slices_consumed_by_type
+    slices_by_type.pluck("pizzas.topping", "COUNT(slices.id) DESC")
+  end
+
+  def avg_num_slices_bought
+    slices_consumed / events_attended
   end
 
   def total_consumed
-    "You've eaten #{whole_pizzas_consumed} pizzas and #{slice_remainders_consumed} slices."
+    "You've eaten #{whole_pizzas_consumed} pies and #{slice_remainders_consumed} slices of joy!"
+  end
+
+  def slices_consumed
+    Slice.joins(:order => :user).where(:orders => {user_id: self}).count
   end
 
   def whole_pizzas_consumed
@@ -76,8 +92,8 @@ class User < ActiveRecord::Base
     slices_consumed * 272
   end
 
-  def miles_needed_to_walk
-    calories_consumed / 100
+  def miles_needed_to_run
+    calories_consumed / 120
   end
 
 end
