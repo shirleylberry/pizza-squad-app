@@ -1,24 +1,27 @@
-<div class="col-sm-4 col-sm-offset-4">
+<div class="container">
+  <div class="col-sm-4 col-sm-offset-4">
 
-  <h1 class="text-center">Your Order for</h1>
-  <h3><%= @event.title %></h3>
-    <% if @event.active? %>
-      <h5><em><%= @event.time_left %> until orders close</em></h5>
-    <% else %>
-      <h5>Event ended on <%= @event.date.strftime("%A, %B %e, %Y") %></h5>
-    <% end %>
-
-
-    <p>You ordered:</p>
-
-    <ul>
-      <% @slices_by_type.each do |topping, count| %>
-        <li><%= count %> <%= topping %></li>
+    <h1 class="text-center">Your Order for</h1>
+    <h3><%= @event.title %></h3>
+    <p><%= @event.description %></p>
+      <% if @event.active? %>
+        <h5><em><%= @event.time_left %> until orders close</em></h5>
+      <% else %>
+        <h5>Event ended on <%= @event.date.strftime("%A, %B %e, %Y") %></h5>
       <% end %>
-    </ul>
 
-    <% if @order.user == current_user %>
-      <p><%= link_to "Edit Order", edit_event_order_path(@event, @order) if @event.active? %></p>
-    <% end %>
 
+      <p>You ordered:</p>
+
+      <ul>
+        <% @slices_by_type.each do |topping, count| %>
+          <li><%= count %> <%= topping %></li>
+        <% end %>
+      </ul>
+
+      <% if @order.user == current_user %>
+        <p><%= link_to "Edit Order", edit_event_order_path(@event, @order) if @event.active? %></p>
+      <% end %>
+
+  </div>
 </div>

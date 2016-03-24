@@ -1,44 +1,47 @@
-<div class="col-sm-6 col-sm-offset-3">
+<div class="container">
+  <div class="col-sm-6 col-sm-offset-3">
 
-<h1><%= @event.title %></h1>
-<p style="font-size: 1.2em"><%= @event.description %></p>
-<p>Restaurant: <%= @event.restaurant.name %></p>
-<em><h4>Time Until Deadline: <%= @event.time_left %></h4></em>
+  <h1><%= @event.title %></h1>
+  <p style="font-size: 1.2em"><%= @event.description %></p>
+  <p>Restaurant: <%= @event.restaurant.name %></p>
+  <em><h4>Time Until Deadline: <%= @event.time_left %></h4></em>
 
-<hr>
-<ul>
-  <h4>Time of Event: <%= @event.date.strftime("%A, %B %e, %Y at %l:%M %P") %></h4>
-  <h4>Orders Due: <%= @event.deadline.strftime("%A, %B %e, %Y at %l:%M %P") %></h4>
-</ul>
-<hr>
+  <hr>
+  <ul>
+    <h4>Time of Event: <%= @event.date.strftime("%A, %B %e, %Y at %l:%M %P") %></h4>
+    <h4>Orders Due: <%= @event.deadline.strftime("%A, %B %e, %Y at %l:%M %P") %></h4>
+  </ul>
+  <hr>
 
-<h4>Total Pizzas</h4>
-  <p>
-    <%= @event.slices.count %> slices, approximately <%= @event.slices.count/8 %> 'zas
+  <h4>Total Pizzas</h4>
     <p>
-    <ul>
-    <% @event.slices_by_type.each do |topping, count| %>
-      <li><%= "#{count} #{topping} slices" %></li>
-    <% end if @event.orders.present? %>
-    </ul>
+      <%= @event.slices.count %> slices, approximately <%= @event.slices.count/8 %> 'zas
+      <p>
+      <ul>
+      <% @event.slices_by_type.each do |topping, count| %>
+        <li><%= "#{count} #{topping} slices" %></li>
+      <% end if @event.orders.present? %>
+      </ul>
+      </p>
     </p>
-  </p>
 
-<h4>Participants</h4>
-  <p><%= "None yet. Add your order to get the pizza party started!" if @orders.empty? %></p>
-  <ul class="list-group">
-  <% @orders.each do |order| %>
-     <%= link_to "#{order.user.name}, #{order.slices.count} slices", user_path(order.user),  class:"list-group-item list-format list-fontcolor"%>
-  <%end%>
-</ul>
+  <h4>Participants</h4>
+    <p><%= "None yet. Add your order to get the pizza party started!" if @orders.empty? %></p>
+    <ul class="list-group">
+    <% @orders.each do |order| %>
+       <%= link_to "#{order.user.name}, #{order.slices.count} slices", user_path(order.user),  class:"list-group-item list-format list-fontcolor"%>
+    <%end%>
+  </ul>
 
-<em><p>Your Pizza President is <%=@event.president.user.name%>. Contact: <%=@event.president.user.email%></p></em>
+  <em><p>Your Pizza President is <%=@event.president.user.name%>. Contact: <%=@event.president.user.email%></p></em>
 
-<div class="col-sm-12">
+  <div class="col-sm-12">
 
-  <%= link_to "Add Order", input_num_slices_path(@event), {id: 'add_order', class:"btn btn-s btn-primary"}%>
-  <%= link_to "Edit Event", edit_event_path(@event),{id: 'edit_event', class:"btn btn-s btn-primary"} if @event.president.user == current_user%>
-  <%= link_to "Email Users", user_order_email_path(@event),{id: 'email_users', class:"btn btn-s btn-primary"}if @event.date?%>
+    <%= link_to "Add Order", input_num_slices_path(@event), {id: 'add_order', class:"btn btn-s btn-primary"}%>
+    <%= link_to "Edit Event", edit_event_path(@event),{id: 'edit_event', class:"btn btn-s btn-primary"} if @event.president.user == current_user%>
+    <%= link_to "Email Users", user_order_email_path(@event),{id: 'email_users', class:"btn btn-s btn-primary"}if @event.date?%>
 
+    </div>
   </div>
+
 </div>

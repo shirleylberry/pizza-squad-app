@@ -1,32 +1,35 @@
-<div class="col-sm-4 col-sm-offset-4">
+<div class="container">
+  <div class="col-sm-4 col-sm-offset-4">
 
-<% if event.errors.any? %>
-  <div class="alert alert-danger" role="alert">
-    <ul>
-      <% event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <%end%>
-    </ul>
+  <% if event.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <ul>
+        <% event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <%end%>
+      </ul>
+    </div>
+  <%end%>
+  <h1 class="text-center">Create An Event</h1>
+
+  <!-- ,  class: "col-md-4 control-label" -->
+
+
+
+    <%= form_for(event, html: { class:"form-horizontal center" }) do |f| %>
+      <%= f.label :title%>
+      <%= f.text_field :title, class: "form-control", :placeholder => "FSP PIZZA PARTY"%> <br>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control",:placeholder => "Come celebrate flatiron school presents" %> <br>
+      <%= f.label :date%>
+      <%= f.datetime_field :date, class: "form-control", :placeholder => "3/14/16 3pm, or tomorrow at 3pm"%> <br>
+      <%= f.label :deadline %>
+      <%= f.datetime_field :deadline, class: "form-control", :placeholder => "3/14/16 1pm, or tomorrow at 1pm"%> <br>
+      <%= f.label :restaurant%><br>
+      <%= f.collection_select(:restaurant_id, Restaurant.all, :id, :name, class: "form-control", :data => {:confirm => "No 'za bro?"}) if event.orders.empty? %><br><br>
+      <%=  event.restaurant.name if event.orders.empty? == false%><br><br>
+      <%= f.submit %>
+    <% end %>
   </div>
-<%end%>
-<h1 class="text-center">Create An Event</h1>
 
-<!-- ,  class: "col-md-4 control-label" -->
-
-
-
-  <%= form_for(event, html: { class:"form-horizontal center" }) do |f| %>
-    <%= f.label :title%>
-    <%= f.text_field :title, class: "form-control", :placeholder => "FSP PIZZA PARTY"%> <br>
-    <%= f.label :description %>
-    <%= f.text_area :description, class: "form-control",:placeholder => "Come celebrate flatiron school presents" %> <br>
-    <%= f.label :date%>
-    <%= f.datetime_field :date, class: "form-control", :placeholder => "3/14/16 3pm, or tomorrow at 3pm"%> <br>
-    <%= f.label :deadline %>
-    <%= f.datetime_field :deadline, class: "form-control", :placeholder => "3/14/16 1pm, or tomorrow at 1pm"%> <br>
-    <%= f.label :restaurant%><br>
-    <%= f.collection_select(:restaurant_id, Restaurant.all, :id, :name, class: "form-control", :data => {:confirm => "No 'za bro?"}) if event.orders.empty? %><br><br>
-    <%=  event.restaurant.name if event.orders.empty? == false%><br><br>
-    <%= f.submit %>
-  <% end %>
 </div>
