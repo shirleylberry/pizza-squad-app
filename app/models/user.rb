@@ -32,8 +32,9 @@ class User < ActiveRecord::Base
 
   # GROUP
   def self.sorted_by_slice_count
-      User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC").limit(5)
-    # <ActiveRecord::Relation [#<User id: ...>, #<User id: ...>, ...]>
+      # User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC").limit(5)
+      User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC")
+      # <ActiveRecord::Relation [#<User id: ...>, #<User id: ...>, ...]>
   end
 
   def self.users_with_slice_count
@@ -76,7 +77,7 @@ class User < ActiveRecord::Base
   end
 
   def total_consumed
-    "You've eaten #{whole_pizzas_consumed} pizzas and #{slice_remainders_consumed} slices!"
+    "You've eaten #{whole_pizzas_consumed} pies and #{slice_remainders_consumed} slices of joy!"
   end
 
   def slices_consumed

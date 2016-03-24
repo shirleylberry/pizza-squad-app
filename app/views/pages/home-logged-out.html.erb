@@ -1,39 +1,35 @@
-  <div class="jumbotron" style="background: url(http://s27.postimg.org/cj0snkc5v/pizza_fade.jpg) no-repeat; margin: -2em -1.1em -2em -1.1em">
-
+<div class="jumbotron">
+  <div class="container center text-left">
     <h1 class="welcome-header">Welcome to Pizza Squad</h1>
     <p style="font-size: 2em">Eat More Pizza</p>
-    <br><br>
-
-    <br><br>
     <%= link_to "Sign Up", new_user_registration_path, {class:"btn btn-lg btn-primary"} %><br><br>
     <%= link_to "Upcoming Events", events_path, {class:"btn btn-lg btn-primary"}%>
-
-</div>
-
-<div class="col-sm-12">
-  <hr style="border-bottom: 1px solid #ccc; margin-top: 40px">
-</div>
-
-<div class="col-sm-6">
-  <div class="row">
-    <div class="col-sm-6">
-
-      <h4>Slices Consumed by Type</h4>
-      <%= pie_chart Slice.total_slices_by_type %>
-
-    </div>
-    <div class="col-sm-6">
-
-      <h4>Pizza Parties by Date</h4>
-      <%= column_chart Event.pizza_parties_by_date %>
-
-    </div>
   </div>
 </div>
 
-<div class="col-sm-6">
+<div class="container-fluid" style="border-bottom: 1px solid #ccc">
+  <h2 class="text-center">We've helped people consume <%= @slices.count %> slices of pizza on <%= @events.count %> occasions.</h2>
+  <br><br>
+</div>
 
-  <h4>Slices Consumed by Type</h4>
-  <%= pie_chart Slice.total_slices_by_type %>
+<div class="container-fluid">
+  <br><br>
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-6">
+        <h4>Slices Consumed by Type</h4>
+        <%= pie_chart Slice.total_slices_by_type %>
+      </div>
+      <div class="col-sm-6">
+        <h4>Pizza Parties by Date</h4>
+        <%= column_chart Event.pizza_parties_by_date %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <h4>Slices Consumed by Type</h4>
+    <%= pie_chart Slice.total_slices_by_type %>
+  </div>
 
 </div>
