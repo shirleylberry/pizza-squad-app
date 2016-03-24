@@ -58,7 +58,10 @@ class Event < ActiveRecord::Base
   end
 
   def self.pizza_parties_by_date
-    Event.group("strftime('%d %b %Y'), created_at").count
+    Event.all.each_with_object(Hash.new(0)) do |event, event_hash|
+      event_hash[event.date] += 1
+    end
+    # Event.group("strftime('%d %b %Y'), created_at").count
   end
 
   def self.active_events
@@ -180,17 +183,17 @@ class Event < ActiveRecord::Base
 
   def total_price
     slices_pies = self.determine_slices_pies
-    total = 0
+    total_price = 0
     slices_pies.each do |item_type, item_hash|
       # iterate over all of them, find the pizza with that topping
       # add either the pie price or the indiv_piece_price to the total
       if item_type == :pies
-        total += total_pies_price(item_hash)
+        total_price += total_pies_price(item_hash)
       elsif item_type == :slices
-        total += total_slices_price(item_hash)
+        total_price += total_slices_price(item_hash)
       end
     end
-    total
+    total_price *= 1.08875
   end
 
   #### MAILER ###

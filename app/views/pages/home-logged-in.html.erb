@@ -33,8 +33,6 @@
     <div class="col-sm-6">
 
       <h4>Pizza Parties by Date</h4>
-      <%= column_chart Event.group("strftime('%d %b'), created_at").count %>
-
     </div>
   </div>
 </div>
