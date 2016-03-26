@@ -251,11 +251,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener
-<<<<<<< HEAD
-  pg (~> 0.18.4)
-=======
   pg
->>>>>>> eda07d8bdf2bf5409153404ce65b6f1837f68b00
   rails (= 4.2.5.2)
   rails_12factor
   rspec-rails

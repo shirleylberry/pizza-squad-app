@@ -19,7 +19,8 @@ class Pizza < ActiveRecord::Base
 
   #### ANALYTICS ####
 
+# had to remove .limit(3) because total_slices_by_type chart relies on this query method
   def self.pizzas_by_popularity
-    Pizza.joins(:slices).group(:topping).order("COUNT(slices.id) DESC").limit(3)
+    Pizza.joins(:slices).group(:topping).order("COUNT(slices.id) DESC")
   end
 end

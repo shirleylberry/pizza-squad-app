@@ -1,45 +1,48 @@
-<div class="col-sm-6 col-sm-offset-3">
-
-  <h1 class="welcome-header">Welcome to Pizza Squad</h1>
-  <br><br>
 <div class="container">
-  </div>
-    <div class="col-sm-5">
-      <%= link_to "Create Event", new_event_path, {class:"btn btn-lg btn-primary"} %><br><br>
-      <%= link_to "Upcoming Events", events_path, {class:"btn btn-lg btn-primary"}%>
+  <div class="col-sm-6 col-sm-offset-3">
+
+    <h1 class="welcome-header">Welcome to Pizza Squad</h1>
+    <br><br>
+  <div class="container">
+    </div>
+      <div class="col-sm-5">
+        <%= link_to "Create Event", new_event_path, {class:"btn btn-lg btn-primary"} %><br><br>
+        <%= link_to "Upcoming Events", events_path, {class:"btn btn-lg btn-primary"}%>
+      </div>
+
+    <div class="col-sm-7">
+      <%= image_tag(@rand_giphy_image) %>
     </div>
 
-  <div class="col-sm-7">
-    <%= image_tag(@rand_giphy_image) %>
   </div>
 
-</div>
+  <div class="col-sm-12">
+    <hr style="border-bottom: 1px solid #ccc; margin-top: 40px">
 
-<div class="col-sm-12">
-  <hr style="border-bottom: 1px solid #ccc; margin-top: 40px">
+    <h2 class="text-center page-header">We've helped people consume <%= @slices.count %> slices of pizza on <%= @events.count %> occasions.</h2>
+    <br><br>
+  </div>
 
-  <h2 class="text-center page-header">We've helped people consume <%= @slices.count %> slices of pizza on <%= @events.count %> occasions.</h2>
-  <br><br>
-</div>
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-6">
 
-<div class="col-sm-6">
-  <div class="row">
-    <div class="col-sm-6">
+        <h4>Slices Consumed by Type</h4>
+        <%= pie_chart Slice.total_slices_by_type %>
 
-      <h4>Slices Consumed by Type</h4>
-      <%= pie_chart Slice.total_slices_by_type %>
+      </div>
+      <div class="col-sm-6">
 
-    </div>
-    <div class="col-sm-6">
-
-      <h4>Pizza Parties by Date</h4>
+        <h4>Pizza Parties by Date</h4>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="col-sm-6">
+  <div class="col-sm-6">
 
-  <h4>Slices Consumed by Type</h4>
-  <%= pie_chart Slice.total_slices_by_type %>
+    <h4>Slices Consumed by Type</h4>
+    <%= pie_chart Slice.total_slices_by_type %>
+
+  </div>
 
 </div>
