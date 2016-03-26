@@ -41,6 +41,14 @@ gem 'groupdate'
 # gem 'capistrano-rails', group: :development
 
 gem 'faker'
+gem 'therubyracer'
+
+# OAuth
+gem 'oauth-plugin'
+gem 'omniauth-twitter'
+gem 'omniauth-google'
+gem 'omniauth-facebook'
+gem 'omniauth-splitwise', '~> 0.0.1'
 
 group :production do
   gem 'pg'

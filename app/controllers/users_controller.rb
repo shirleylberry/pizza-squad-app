@@ -34,5 +34,21 @@ class UsersController < ApplicationController
      @user = User.find(params[:id])
    end
 
+   def access_token
+    if session[:access_token]
+      @access_token ||= OAuth::AccessToken.new(consumer, session[:access_token], session[:access_token_secret])
+    end
+  end
+
+   def consumer
+    @c ||= OAuth::Consumer.new(ENV["SPLITWISE_API_KEY"], ENV["SPLITWISE_API_SECRET"], {
+    :site => ENV["SPLITWISE_SITE"],
+    :scheme => :header,
+    :http_method => :post,
+    :authorize_path => ENV["SPLITWISE_AUTHORIZE_URL"],
+    :request_token_path => ENV["SPLITWISE_REQUEST_TOKEN_URL"],
+    :access_token_path => ENV["SPLITWISE_ACCESS_TOKEN_URL"]
+    })
+  end
 
 end

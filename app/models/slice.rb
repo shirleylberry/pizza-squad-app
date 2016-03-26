@@ -19,7 +19,7 @@ class Slice < ActiveRecord::Base
   #### ANALYTICS ####
 
   def self.total_slices_by_type
-    Pizza.pizzas_by_popularity.pluck("pizzas.topping, COUNT(slices.id)")
+    # Pizza.pizzas_by_popularity.pluck("pizzas.topping, COUNT(slices.id)")
   end
 
   # for each order, how many of that slice are usually ordered, if that slice

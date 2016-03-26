@@ -20,6 +20,9 @@ class Pizza < ActiveRecord::Base
   #### ANALYTICS ####
 
   def self.pizzas_by_popularity
-    Pizza.joins(:slices).group(:topping).order("COUNT(slices.id) DESC").limit(3)
+    # SQLITE: # Pizza.joins(:slices).group(:topping).order("COUNT(slices.id) DESC").limit(3)
+    toppings_hash = Pizza.joins(:slices).group_by{|pizzas| pizzas.topping}
+    toppings_hash.map{|key, value| toppings_hash[key] = value.count}
+    # end
   end
 end
