@@ -18,17 +18,17 @@
 
     <%= form_for(event, html: { class:"form-horizontal center" }) do |f| %>
       <%= f.label :title%>
-      <%= f.text_field :title, class: "form-control", :placeholder => "FSP PIZZA PARTY"%> <br>
+      <%= f.text_field :title, class: "form-control", :placeholder => "Movie Night"%> <br>
       <%= f.label :description %>
-      <%= f.text_area :description, class: "form-control",:placeholder => "Come celebrate flatiron school presents" %> <br>
+      <%= f.text_area :description, class: "form-control",:placeholder => "Watch Back to the Future, eat pizza!" %> <br>
       <%= f.label :date%>
       <%= f.datetime_field :date, class: "form-control", :placeholder => "3/14/16 3pm, or tomorrow at 3pm"%> <br>
       <%= f.label :deadline %>
       <%= f.datetime_field :deadline, class: "form-control", :placeholder => "3/14/16 1pm, or tomorrow at 1pm"%> <br>
       <%= f.label :restaurant%><br>
-      <%= f.collection_select(:restaurant_id, Restaurant.all, :id, :name, class: "form-control", :data => {:confirm => "No 'za bro?"}) if event.orders.empty? %><br><br>
+      <%= f.collection_select(:restaurant_id, Restaurant.all, :id, :name, class: "form-control", :data => {:confirm => "No 'za, bro?"}) if event.orders.empty? %><br><br>
       <%=  event.restaurant.name if event.orders.empty? == false%><br><br>
-      <%= f.submit %>
+      <center><%= f.submit class: "btn btn-lg btn-primary" %></center>
     <% end %>
   </div>
 

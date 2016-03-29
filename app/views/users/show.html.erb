@@ -1,25 +1,28 @@
 <div class="container">
+  <div class="col-sm-12">
+    <h1 class="text-center heading"><%= @user.name %></h1>
+  </div>
   <div class="col-sm-4">
-      <h2>Your Analytics</h2>
+      <h3>Your Analytics</h3>
 
       <br>
       <div class="col-xs-6">
         <p>You've attended...</p>
-        <p class="text-center" style="font-size: 3em; margin: -2%;"><%= @user.events_attended %></p>
+        <p class="text-center prominent-number"><%= @user.events_attended %></p>
         <p class="text-center"><small>event(s)</small></p>
       </div>
 
       <div class="col-xs-6">
         <p>You've hosted...</p>
-        <p class="text-center" style="font-size: 3em; margin: -2%;"><%= @user.events_hosted %></p>
+        <p class="text-center prominent-number"><%= @user.events_hosted %></p>
         <p class="text-center"><small>event(s)</small></p>
       </div>
 
       <hr class="col-xs-10 col-xs-offset-1">
 
-      <h5 class="text-center">You order an average of <span style="font-size: 2em"><%= @user.avg_num_slices_bought %></span> slices</h5>
+      <h5 class="text-center">You order an average of <span class="double-size"><%= @user.avg_num_slices_bought %></span> slices</h5>
 
-      <%= pie_chart @user.slices_consumed_by_type %>
+      <!-- %= pie_chart @user.slices_consumed_by_type %> -->
 
       <hr>
       <em><h5 class="text-center"><%= @user.total_consumed %></h5></em>
@@ -27,22 +30,20 @@
 
       <div class="col-xs-6">
         <p>You've consumed...</p>
-        <p class="text-center" style="font-size: 3em; margin: -2%;"><%= @user.calories_consumed %></p>
+        <p class="text-center prominent-number"><%= @user.calories_consumed %></p>
         <p class="text-center"><small>calories</small></p>
       </div>
 
       <div class="col-xs-6">
         <p>You'd need to run...</p>
-        <p class="text-center" style="font-size: 3em; margin: -2%;"><%= @user.miles_needed_to_run %></p>
+        <p class="text-center prominent-number"><%= @user.miles_needed_to_run %></p>
         <p class="text-center"><small>miles</small></p>
       </div>
   </div>
 
   <div class="col-sm-6">
-    <h1><%= @user.name %></h1>
-    <br><br>
 
-    <h4>Active Orders </h4>
+    <h2>Active Orders </h2>
     <ul class="list-group">
       <em><%= "No current orders. Get in on some pizza!" if @active_orders.empty? %></em>
       <% @active_orders.each do |order| %>
@@ -58,7 +59,7 @@
             <em><p class="list-group-item-text">  Ordering closes <%= order.event.deadline.strftime("%A, %B %e at %l:%M %P") %></p></em>
           </div>
           <div class="col-xs-2">
-            <p class="text-right" style="font-size: 3em; margin-bottom: -10%;"><%= order.slices.count %></p>
+            <p class="text-right prominent-number"><%= order.slices.count %></p>
             <p class="text-right"><small>slices</small></p>
           </div>
         </div>
@@ -82,7 +83,7 @@
             <em><p class="list-group-item-text">  Ordering closes <%= order.event.deadline.strftime("%A, %B %e at %l:%M %P") %></p></em>
           </div>
           <div class="col-xs-2">
-            <p class="text-right" style="font-size: 3em; margin-bottom: -10%;"><%= order.slices.count %></p>
+            <p class="text-right prominent-number"><%= order.slices.count %></p>
             <p class="text-right"><small>slices</small></p>
           </div>
         </div>
@@ -90,5 +91,5 @@
       <%end%>
     </ul>
   </div>
-  
+
 </div>

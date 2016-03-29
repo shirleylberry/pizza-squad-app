@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-sm-6 col-sm-offset-3">
 
-  <h1 class="text-center">Pizza Order</h1>
+  <h1 class="text-center heading">Pizza Order</h1>
 
   <h5><%= event.restaurant.name %></h5><br>
 
@@ -20,7 +20,7 @@
         <%= link_to "Remove Slice", slice_path(slice_form.object), :method => :delete, :data => {:confirm => "No 'za bro?"} if order.id && slice_form.object.id %>
         <br><br>
       <%end%>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-lg btn-primary" %>
   <%end%>
 
   </div>
