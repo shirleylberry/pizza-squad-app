@@ -1,8 +1,7 @@
 <div class="container">
   <div class="col-sm-6 col-sm-offset-3">
 
-  <h1 class="text-center heading">Analytics</h1>
-
+    <h1 class="text-center heading">Analytics</h1>
 
     <h4>Restaurant with most Pizza Consumed</h4>
     <%= column_chart Slice.joins(:restaurant).group(:name).count %>
@@ -16,38 +15,16 @@
     <br>
     <br>
 
+    <h4>The average event costs $<%= Event.average_cost %>.</h4>
+
+    <h4>The average number of slices ordered per event is <%= Event.average_num_slices %>.</h4>
+
+    <h4>The average number of slices per order is <%= Order.average_num_slices %>.</h4>
+
     <br>
-    <h4>Top 5 Users by Events Attended</h4>
-    <ul>
-      <% User.sorted_by_event_count.each do |user| %>
-        <li><%= "#{user.name} has attended #{user.events.count} events"%></li>
-      <% end %>
-    </ul>
+    <br>
+
 
 
   </div>
-  <h4>Top Three Most Popular Pizzas</h4>
-  <ul>
-    <!-- % Pizza.pizzas_by_popularity.each do |pizza| % -->
-      <!-- li %= "#{pizza.topping} from #{pizza.restaurant.name}" % /li  -->
-    <!-- % end % -->
-  </ul>
-  <br><br>
-
-  <h4>Top 5 Users by Events Attended</h4>
-  <ul>
-     <!-- % User.sorted_by_event_count.each do |user| %
-       li  %= "#{user.name} has attended #{user.events.count} events"%  /li
-     % end %  -->
-  </ul>
-  <br><br>
-
-  <h4>Most Presidential Users</h4>
-  <ul>
-     <!-- % President.sorted_by_event_count.each do |president| %
-       li  %= "#{president.user.name} has hosted #{president.events.count} events" %  /li
-     % end %  -->
-  </ul>
-
-</div>
 </div>

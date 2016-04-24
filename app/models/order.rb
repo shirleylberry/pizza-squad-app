@@ -29,4 +29,13 @@ class Order < ActiveRecord::Base
   def slices_by_type
     Slice.joins(:order, :pizza).where("orders.id = ?", self).group("pizzas.topping").count
   end
+
+  def self.total_slices_per_order
+    self.all.map{|order| order.slices.count}
+  end
+  #=> [9, 7, 25]
+
+  def self.average_num_slices
+    (total_slices_per_order.inject(0) { |sum, num_slices| sum + num_slices } / self.all.size.to_f ).round(2)
+  end
 end
