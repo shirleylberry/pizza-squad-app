@@ -32,18 +32,29 @@ class User < ActiveRecord::Base
 
   # GROUP
   def self.sorted_by_slice_count
+    q = User.select( "users.*, count(slices.id) AS slices_count" )
+    .joins(:slices)
+    .group( "users.id" )
       # User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC").limit(5)
-      User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC")
+      # User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC")
+      # User.joins(:slices).group(:user_id).order("COUNT(slices.id) DESC")
       # <ActiveRecord::Relation [#<User id: ...>, #<User id: ...>, ...]>
   end
 
   def self.users_with_slice_count
+    binding.pry
     self.sorted_by_slice_count.pluck("users.name, COUNT(slices.id)")
     # => [["Anna Nigma", 9], ["Georgianna Schimmel", 7], ["Sammy Mernick", 6], ["Janie Gleichner", 4]]
   end
 
   def self.sorted_by_event_count
-    User.joins(:events).group(:user_id).order("COUNT(events.id) DESC").limit(5)
+    users = User.select( "users.*, count(events.id) AS events_count" ).joins(:events)#.group( "users.id" )
+    # puts q
+    # self.each do |i|
+    #   puts i
+    # end
+    byebug
+    # User.joins(:events).group(:user_id).order("COUNT(events.id) DESC").limit(5)
   end
 
   def self.users_with_event_count

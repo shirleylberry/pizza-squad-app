@@ -22,24 +22,23 @@
   <br><br>
 </div>
 
-<div class="col-sm-6">
-  <div class="row">
-    <div class="col-sm-6">
+<div class="container-fluid">
+  <br><br>
 
-      <h4>Slices Consumed by Type</h4>
-      <%= pie_chart Slice.total_slices_by_type %>
-
-    </div>
-    <div class="col-sm-6">
-
-      <h4>Pizza Parties by Date</h4>
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-4">
+        <h4>Slices Consumed by Type</h4>
+        <%= pie_chart Slice.total_slices_by_type %>
+      </div>
+      <div class="col-sm-4">
+        <h4>Pizza Parties by Date</h4>
+        <%= column_chart Event.pizza_parties_by_date %>
+      </div>
+      <div class="col-sm-4">
+        <h4>Most Popular Restaurants</h4>
+        <%= bar_chart Restaurant.restaurant_profit_total %>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="col-sm-6">
-
-  <h4>Slices Consumed by Type</h4>
-  <%= pie_chart Slice.total_slices_by_type %>
-
 </div>

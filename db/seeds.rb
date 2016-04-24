@@ -80,41 +80,13 @@ e3.restaurant = restaurant3
 e3.save
 
 
-order1 = Order.create(user: User.all.sample, event: e1)
-order2 = Order.create(user: User.all.sample, event: e1)
-order3 = Order.create(user: User.all.sample, event: e1)
-order4 = Order.create(user: User.all.sample, event: e1)
-order5 = Order.create(user: User.all.sample, event: e1)
-order6 = Order.create(user: User.all.sample, event: e1)
-order7 = Order.create(user: User.all.sample, event: e1)
-order8 = Order.create(user: User.all.sample, event: e1)
-order9 = Order.create(user: User.all.sample, event: e1)
-order10 = Order.create(user: User.all.sample, event: e1)
-order11 = Order.create(user: User.all.sample, event: e2)
-order12 = Order.create(user: User.all.sample, event: e2)
-order13 = Order.create(user: User.all.sample, event: e2)
-order14 = Order.create(user: User.all.sample, event: e2)
-order15 = Order.create(user: User.all.sample, event: e2)
-order16 = Order.create(user: User.all.sample, event: e2)
-order17 = Order.create(user: User.all.sample, event: e2)
-order18 = Order.create(user: User.all.sample, event: e2)
-order19 = Order.create(user: User.all.sample, event: e2)
-order20 = Order.create(user: User.all.sample, event: e2)
-order21 = Order.create(user: User.all.sample, event: e3)
-order22 = Order.create(user: User.all.sample, event: e3)
-order23 = Order.create(user: User.all.sample, event: e3)
-order24 = Order.create(user: User.all.sample, event: e3)
-order25 = Order.create(user: User.all.sample, event: e3)
-order26 = Order.create(user: User.all.sample, event: e3)
-order27 = Order.create(user: User.all.sample, event: e3)
-order28 = Order.create(user: User.all.sample, event: e3)
-order29 = Order.create(user: User.all.sample, event: e3)
-order30 = Order.create(user: User.all.sample, event: e3)
+Event.all.each do |event|
+  8.times{Order.create(user: User.all.sample, event: event)}
+end
 
-orders1 = [order1, order2, order3, order4, order5, order6, order7, order8, order9, order10]
-orders2 = [order11, order12, order13, order14, order15, order16, order17, order18, order19, order20]
-orders3 = [order21, order22, order23, order24, order25, order26, order27, order28, order29, order30]
-
+orders1 = Order.all.slice(0, 10)
+orders2 = Order.all.slice(10, 10)
+orders3 = Order.all.slice(19, 10)
 
 
 170.times{Slice.create(order: orders1.sample, pizza: pizzas.sample)}

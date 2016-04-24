@@ -3,8 +3,6 @@ class Restaurant < ActiveRecord::Base
   has_many :events
   has_many :slices, through: :pizzas
 
-
-
   def restaurant_profit
     self.events.inject(0) {|memo, event| memo + event.total_price}
   end
@@ -14,5 +12,4 @@ class Restaurant < ActiveRecord::Base
       hash[restaurant.name] = restaurant.restaurant_profit
     end
   end
-
 end

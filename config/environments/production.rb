@@ -1,4 +1,14 @@
 Rails.application.configure do
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 25,
+  domain:               'gmail.com',
+  user_name:            'za.pizzasquad@gmail.com',
+  password:             'zazazaza!',
+  authentication:       'plain',
+  enable_starttls_auto: true  }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -47,6 +57,12 @@ Rails.application.configure do
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :debug
+
+  # define default url
+  config.action_mailer.default_url_options = { host: 'pizza-squad.herokuapp.com', port: 3000 }
+
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]

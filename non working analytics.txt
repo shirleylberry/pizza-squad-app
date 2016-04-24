@@ -1,0 +1,20 @@
+<!--     <h4>Top Three Most Popular Pizzas</h4>
+    <ul>
+      <% Pizza.pizzas_by_popularity.each do |pizza| %>
+        <li><%= "#{pizza.topping} from #{pizza.restaurant.name}" %></li>
+      <% end %>
+    </ul> -->
+
+    <ul>
+      <% User.sorted_by_event_count.each do |user| %>
+        <li><%= "#{user.name} has attended #{user.events.count} events"%></li>
+      <% end %>
+    </ul>
+
+    <br><br>
+    <h4>Most Presidential Users</h4>
+    <ul>
+      <% President.sorted_by_event_count.each do |president| %>
+        <li><%= "#{president.user.name} has hosted #{president.events.count} events" %></li>
+      <% end %>
+    </ul>
