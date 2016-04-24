@@ -13,9 +13,30 @@
  *= require_tree .
  *= require_self
  */
+ 
  body {
    padding-top: 50px;
    margin-bottom: 50px;
+ }
+
+.footer {
+  bottom: 0;
+  position: relative;
+  padding-top: 50px;
+  width: 100%;
+}
+
+ .thick-rule {
+   border-bottom: 1px solid #ccc;
+ }
+
+ .pizza-squad {
+   font-family: "Patua One";
+   font-size: 1.1em;
+ }
+
+ .header-block {
+   margin-bottom: 40px;
  }
 
  .jumbotron {
@@ -26,31 +47,29 @@
     border-bottom: 1px solid #ccc;
 }
 
- .footer {
-   padding-top: 50px;
- }
+.visitor-welcome {
+ font-family: "Lobster";
+}
 
- .starter-template {
-   padding: 40px 15px;
-   text-align: center;
- }
+.heading {
+  font-family: "Patua One";
+  margin-bottom: 5%;
+}
+
+.double-size {
+ font-size: 2em;
+}
+
+.description {
+ font-size: 120%;
+}
+
+.prominent-number {
+ font-size: 3em;
+ margin-bottom: -2%;
+}
 
 .list-format {
   background-color: #9494b8;
   border: black;
-}
-
-.list-fontcolor {
-  color: black;
-}
-
-.pizza-squad {
-  /*font-family: "Oldenburg";*/
-  /*font-family: "Sansita One";*/
-  font-family: "Patua One";
-  font-size: 1.1em;
-}
-
-.welcome-header {
-  font-family: "Lobster";
 }

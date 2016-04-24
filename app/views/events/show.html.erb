@@ -2,7 +2,7 @@
   <div class="col-sm-6 col-sm-offset-3">
 
   <h1><%= @event.title %></h1>
-  <p style="font-size: 1.2em"><%= @event.description %></p>
+  <p class="description"><%= @event.description %></p>
   <p>Restaurant: <%= @event.restaurant.name %></p>
   <em><h4>Time Until Deadline: <%= @event.time_left %></h4></em>
 
@@ -29,7 +29,7 @@
     <p><%= "None yet. Add your order to get the pizza party started!" if @orders.empty? %></p>
     <ul class="list-group">
     <% @orders.each do |order| %>
-       <%= link_to "#{order.user.name}, #{order.slices.count} slices", user_path(order.user),  class:"list-group-item list-format list-fontcolor"%>
+       <%= link_to "#{order.user.name}, #{order.slices.count} slices", user_path(order.user),  class:"list-group-item list-format"%>
     <%end%>
   </ul>
 
